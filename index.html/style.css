@@ -1,0 +1,54 @@
+bbody {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: radial-gradient(circle at top, #1a1a1a, #000);
+    color: white;
+}
+
+.hero {
+  padding: 60px 20px;
+}
+
+.hero h1 {
+  font-size: 28px;
+}
+
+.hero p {
+  font-size: 16px;
+  margin: 15px 0;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 20px;
+  background: #22c55e;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.image-section img {
+  width: 60%;
+  max-width: 400px;
+  margin: 20px 0;
+  border-radius: 10px;
+}
+
+.section {
+  padding: 40px 20px;
+}
+
+.section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.section li {
+  margin: 10px 0;
+}
+
+.cta {
+  padding: 50px 20px;
+  background: #e1e3e7;
+}

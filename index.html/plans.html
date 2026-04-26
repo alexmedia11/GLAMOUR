@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glamour Premium Card</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+
+      :root {
+    --bg-black: #0a0a0a;
+    --card-bg: #111111;
+    --gold: #d4af37;
+    --gold-dim: #9c7e2a;
+    --text-gray: #a0a0a0;
+    --white: #ffffff;
+}
+
+body {
+    background-color: var(--bg-black);
+    color: var(--white);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.card {
+    background: linear-gradient(145deg, #161616, #0d0d0d);
+    border: 1px solid #222;
+    border-radius: 40px;
+    padding: 40px;
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+.badge {
+    border: 1px solid var(--gold-dim);
+    color: var(--gold-dim);
+    font-size: 10px;
+    letter-spacing: 2px;
+    padding: 5px 15px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin: 10px 0;
+    font-weight: 800;
+}
+
+h1 span {
+    color: var(--gold);
+}
+
+.price {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.price span {
+    font-size: 0.8rem;
+    color: var(--text-gray);
+    font-weight: normal;
+}
+
+.divider {
+    height: 1px;
+    background: rgba(255,255,255,0.05);
+    margin: 20px 0;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px 25px;
+    text-align: left;
+    margin-bottom: 40px;
+}
+
+.feature {
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    color: #e0e0e0;
+    white-space: nowrap;
+}
+
+.icon {
+    color: var(--gold);
+    margin-right: 10px;
+    font-size: 1rem;
+}
+
+.pay-btn {
+    background-color: var(--gold);
+    color: black;
+    border: none;
+    width: 100%;
+    padding: 18px;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: transform 0.2s;
+    margin-bottom: 20px;
+}
+
+.pay-btn:hover {
+    background-color: #e5be45;
+    transform: translateY(-2px);
+}
+
+.footer-text {
+    font-size: 0.65rem;
+    color: #444;
+    letter-spacing: 1.5px;
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="header">
+            <span class="badge">LIFETIME ACCESS</span>
+            <h1>Glamour <span>Premium</span></h1>
+            <p class="price">₦14,000 <span>/ ONE-TIME</span></p>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="grid-container">
+            <div class="feature"><span class="icon">☆</span> Glam Link Bonus — ₦12,000 (€6)</div>
+            <div class="feature"><span class="icon">✨</span> GlamLifestyle — €2/hr</div>
+            
+            <div class="feature"><span class="icon">📁</span> GlamScript2Cash — €2/Script</div>
+            <div class="feature"><span class="icon">⚡</span> 1st Indirect Commission — ₦400</div>
+            
+            <div class="feature"><span class="icon">📷</span> GlamRealtime — €2/hr</div>
+            <div class="feature"><span class="icon">🌐</span> GlamLingua — €2/hr</div>
+            
+            <div class="feature"><span class="icon">🎥</span> GlamFaceTime — €2/hr</div>
+            <div class="feature"><span class="icon">💼</span> GlamWorks — €2/hr</div>
+            
+            <div class="feature"><span class="icon">🌙</span> GlamDarkMode — €2/hr</div>
+            <div class="feature"><span class="icon">🛡️</span> 2nd Indirect Commission — ₦100</div>
+            
+            <div class="feature"><span class="icon">📖</span> Glam Reward — ₦10,000 (5€)</div>
+            <div class="feature"><span class="icon">📊</span> Total GlamGains — €12/hr</div>
+        </div>
+
+        <a href="payment-gateway.html" style="text-decoration: none; width: 100%; display: block;">
+    <button class="pay-btn">INITIALIZE PAYMENT &rarr;</button>
+</a>
+        
+        <p class="footer-text">SECURED BY PAYSTACK • INSTANT ACTIVATION</p>
+    </div>
+</body>
+</html>
