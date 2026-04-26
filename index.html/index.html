@@ -416,10 +416,15 @@ overflow:hidden;
 box-shadow:0 0 20px rgba(255,215,0,0.3);
 ">
 
-<video width="100%" controls poster="images/thumbnail.jpg">
-  <source src="videos/promo.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+<div class="video-background" style="position: relative; width: 100%; max-width: 400px; margin: 0 auto; aspect-ratio: 9/16; overflow: hidden; border-radius: 20px; border: 1px solid #d4af37;">
+    <iframe 
+        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"
+        src="https://www.youtube.com/embed/ohll358nsGE?autoplay=1&mute=1&loop=1&playlist=ohll358nsGE&controls=0&rel=0&modestbranding=1&iv_load_policy=3" 
+        frameborder="0" 
+        allow="autoplay; encrypted-media" 
+        allowfullscreen>
+    </iframe>
+</div>
 
 </div>
 
