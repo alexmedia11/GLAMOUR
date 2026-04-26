@@ -125,6 +125,28 @@ h1 span {
     letter-spacing: 1.5px;
 }
 
+        /* Container for the list of perks */
+.perks-grid {
+    display: flex;
+    flex-wrap: wrap;       /* Allows wrapping if screen is tiny */
+    justify-content: space-between;
+    padding: 10px;
+}
+
+/* Individual Perk Items */
+.perk-item {
+    width: 48%;            /* Keeps them in two columns */
+    font-size: 13px;       /* Slightly smaller to prevent text breaking */
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;    /* Forces text to stay in a straight line */
+    color: #fff;
+}
+
+.perk-item span {
+    margin-right: 8px;      /* Space for the emoji/icon */
+}
 
     </style>
 </head>
@@ -139,23 +161,23 @@ h1 span {
         <div class="divider"></div>
 
         <div class="grid-container">
-            <div class="feature"><span class="icon">☆</span> Glam Link Bonus — ₦12,000 (€6)</div>
-            <div class="feature"><span class="icon">✨</span> GlamLifestyle — €2/hr</div>
+            <div class="perk-item"><span class="icon">☆</span> Glam Link Bonus — ₦12,000 (€6)</div>
+            <div class="perk-item"><span class="icon">✨</span> GlamLifestyle — €2/hr</div>
             
-            <div class="feature"><span class="icon">📁</span> GlamScript2Cash — €2/Script</div>
-            <div class="feature"><span class="icon">⚡</span> 1st Indirect Commission — ₦400</div>
+            <div class="perk-item"><span class="icon">📁</span> GlamScript2Cash — €2/Script</div>
+            <div class="perk-item"><span class="icon">⚡</span> 1st Indirect Commission — ₦400</div>
             
-            <div class="feature"><span class="icon">📷</span> GlamRealtime — €2/hr</div>
-            <div class="feature"><span class="icon">🌐</span> GlamLingua — €2/hr</div>
+            <div class="perk-item"><span class="icon">📷</span> GlamRealtime — €2/hr</div>
+            <div class="perk-item"><span class="icon">🌐</span> GlamLingua — €2/hr</div>
             
-            <div class="feature"><span class="icon">🎥</span> GlamFaceTime — €2/hr</div>
-            <div class="feature"><span class="icon">💼</span> GlamWorks — €2/hr</div>
+            <div class="perk-item"><span class="icon">🎥</span> GlamFaceTime — €2/hr</div>
+            <div class="perk-item"><span class="icon">💼</span> GlamWorks — €2/hr</div>
             
-            <div class="feature"><span class="icon">🌙</span> GlamDarkMode — €2/hr</div>
-            <div class="feature"><span class="icon">🛡️</span> 2nd Indirect Commission — ₦100</div>
+            <div class="perk-item"><span class="icon">🌙</span> GlamDarkMode — €2/hr</div>
+            <div class="perk-item"><span class="icon">🛡️</span> 2nd Indirect Commission — ₦100</div>
             
-            <div class="feature"><span class="icon">📖</span> Glam Reward — ₦10,000 (5€)</div>
-            <div class="feature"><span class="icon">📊</span> Total GlamGains — €12/hr</div>
+            <div class="perk-item"><span class="icon">📖</span> Glam Reward — ₦10,000 (5€)</div>
+            <div class="perk-item"><span class="icon">📊</span> Total GlamGains — €12/hr</div>
         </div>
 
         <a href="payment-gateway.html" style="text-decoration: none; width: 100%; display: block;">
