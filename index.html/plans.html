@@ -2,189 +2,221 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Glamour Premium Card</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Glamour Premium - Lifetime Access</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-      :root {
-    --bg-black: #0a0a0a;
-    --card-bg: #111111;
-    --gold: #d4af37;
-    --gold-dim: #9c7e2a;
-    --text-gray: #a0a0a0;
-    --white: #ffffff;
-}
+        body {
+            background-color: #000;
+            font-family: 'Inter', sans-serif;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
 
-body {
-    background-color: var(--bg-black);
-    color: var(--white);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-}
+        .premium-card {
+            width: 100%;
+            max-width: 450px;
+            background: linear-gradient(180deg, #121212 0%, #050505 100%);
+            padding: 40px 24px;
+            text-align: center;
+            min-height: 100vh;
+        }
 
-.card {
-    background: linear-gradient(145deg, #161616, #0d0d0d);
-    border: 1px solid #222;
-    border-radius: 40px;
-    padding: 40px;
-    width: 100%;
-    max-width: 500px;
-    text-align: center;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-}
+        .badge {
+            border: 1px solid #d4af37;
+            color: #d4af37;
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+        }
 
-.badge {
-    border: 1px solid var(--gold-dim);
-    color: var(--gold-dim);
-    font-size: 10px;
-    letter-spacing: 2px;
-    padding: 5px 15px;
-    border-radius: 20px;
-    display: inline-block;
-    margin-bottom: 20px;
-}
+        .premium-title {
+            font-size: 36px;
+            font-weight: 800;
+            margin: 0;
+            line-height: 1.2;
+        }
 
-h1 {
-    font-size: 2.5rem;
-    margin: 10px 0;
-    font-weight: 800;
-}
+        .premium-title span {
+            color: #d4af37;
+            display: block;
+        }
 
-h1 span {
-    color: var(--gold);
-}
+        .price-container {
+            margin: 25px 0 45px 0;
+            font-size: 16px;
+            color: #888;
+        }
 
-.price {
-    font-size: 1.8rem;
-    font-weight: bold;
-    margin-bottom: 30px;
-}
+        .amount {
+            font-size: 48px;
+            font-weight: 800;
+            color: #fff;
+        }
 
-.price span {
-    font-size: 0.8rem;
-    color: var(--text-gray);
-    font-weight: normal;
-}
+        .currency {
+            font-size: 24px;
+            vertical-align: super;
+            margin-right: 4px;
+            color: #fff;
+        }
 
-.divider {
-    height: 1px;
-    background: rgba(255,255,255,0.05);
-    margin: 20px 0;
-}
+        .perks-list {
+            text-align: left;
+            width: 100%;
+            margin: 0 auto;
+        }
 
-.grid-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px 25px;
-    text-align: left;
-    margin-bottom: 40px;
-}
+        .perk-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 22px;
+            border-left: 2px solid transparent;
+            transition: 0.3s;
+        }
 
-.feature {
-    font-size: 0.85rem;
-    display: flex;
-    align-items: center;
-    color: #e0e0e0;
-    white-space: nowrap;
-}
+        .perk-icon {
+            font-size: 20px;
+            margin-right: 18px;
+            width: 30px;
+            text-align: center;
+        }
 
-.icon {
-    color: var(--gold);
-    margin-right: 10px;
-    font-size: 1rem;
-}
+        .perk-text {
+            margin: 0;
+            font-size: 14px;
+            color: #bbb;
+            line-height: 1.4;
+        }
 
-.pay-btn {
-    background-color: var(--gold);
-    color: black;
-    border: none;
-    width: 100%;
-    padding: 18px;
-    border-radius: 15px;
-    font-weight: bold;
-    font-size: 1rem;
-    letter-spacing: 1px;
-    cursor: pointer;
-    transition: transform 0.2s;
-    margin-bottom: 20px;
-}
+        .perk-text b {
+            color: #fff;
+            font-weight: 600;
+        }
 
-.pay-btn:hover {
-    background-color: #e5be45;
-    transform: translateY(-2px);
-}
+        .pay-btn-container {
+            position: sticky;
+            bottom: 20px;
+            width: 100%;
+            padding-top: 20px;
+            background: linear-gradient(0deg, #050505 80%, transparent 100%);
+        }
 
-.footer-text {
-    font-size: 0.65rem;
-    color: #444;
-    letter-spacing: 1.5px;
-}
+        .pay-btn {
+            width: 100%;
+            background: #d4af37;
+            color: #000;
+            border: none;
+            padding: 20px;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 16px;
+            letter-spacing: 1px;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
+        }
 
-        /* Container for the list of perks */
-.perks-grid {
-    display: flex;
-    flex-wrap: wrap;       /* Allows wrapping if screen is tiny */
-    justify-content: space-between;
-    padding: 10px;
-}
-
-/* Individual Perk Items */
-.perk-item {
-    width: 48%;            /* Keeps them in two columns */
-    font-size: 13px;       /* Slightly smaller to prevent text breaking */
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    white-space: nowrap;    /* Forces text to stay in a straight line */
-    color: #fff;
-}
-
-.perk-item span {
-    margin-right: 8px;      /* Space for the emoji/icon */
-}
+        .footer-note {
+            margin-top: 15px;
+            font-size: 10px;
+            color: #444;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
 
     </style>
 </head>
 <body>
-    <div class="card">
-        <div class="header">
-            <span class="badge">LIFETIME ACCESS</span>
-            <h1>Glamour <span>Premium</span></h1>
-            <p class="price">₦14,000 <span>/ ONE-TIME</span></p>
-        </div>
 
-        <div class="divider"></div>
-
-        <div class="grid-container">
-            <div class="perk-item"><span class="icon">☆</span> Glam Link Bonus — ₦12,000 (€6)</div>
-            <div class="perk-item"><span class="icon">✨</span> GlamLifestyle — €2/hr</div>
-            
-            <div class="perk-item"><span class="icon">📁</span> GlamScript2Cash — €2/Script</div>
-            <div class="perk-item"><span class="icon">⚡</span> 1st Indirect Commission — ₦400</div>
-            
-            <div class="perk-item"><span class="icon">📷</span> GlamRealtime — €2/hr</div>
-            <div class="perk-item"><span class="icon">🌐</span> GlamLingua — €2/hr</div>
-            
-            <div class="perk-item"><span class="icon">🎥</span> GlamFaceTime — €2/hr</div>
-            <div class="perk-item"><span class="icon">💼</span> GlamWorks — €2/hr</div>
-            
-            <div class="perk-item"><span class="icon">🌙</span> GlamDarkMode — €2/hr</div>
-            <div class="perk-item"><span class="icon">🛡️</span> 2nd Indirect Commission — ₦100</div>
-            
-            <div class="perk-item"><span class="icon">📖</span> Glam Reward — ₦10,000 (5€)</div>
-            <div class="perk-item"><span class="icon">📊</span> Total GlamGains — €12/hr</div>
-        </div>
-
-        <a href="payment-gateway.html" style="text-decoration: none; width: 100%; display: block;">
-    <button class="pay-btn">INITIALIZE PAYMENT &rarr;</button>
-</a>
-        
-        <p class="footer-text">SECURED BY PAYSTACK • INSTANT ACTIVATION</p>
+<div class="premium-card">
+    <div class="badge">LIFETIME ACCESS</div>
+    
+    <h1 class="premium-title">Glamour <span>Premium</span></h1>
+    
+    <div class="price-container">
+        <span class="currency">₦</span><span class="amount">14,000</span> / ONE-TIME
     </div>
+
+    <div class="perks-list">
+        <div class="perk-item">
+            <div class="perk-icon">⭐</div>
+            <p class="perk-text">Glam Link Bonus — <b>₦12,000 (€6)</b></p>
+        </div>
+
+        <div class="perk-item">
+            <div class="perk-icon">✨</div>
+            <p class="perk-text">GlamLifestyle — <b>€2/hr</b></p>
+        </div>
+
+        <div class="perk-item">
+            <div class="perk-icon">📁</div>
+            <p class="perk-text">GlamScript2Cash — <b>€2/Script</b></p>
+        </div>
+
+        <div class="perk-item">
+            <div class="perk-icon">⚡</div>
+            <p class="perk-text">1st Indirect Commission — <b>₦400</b></p>
+        </div>
+
+        <div class="perk-item">
+            <div class="perk-icon">📷</div>
+            <p class="perk-text">GlamRealtime — <b>€2/hr</b></p>
+        </div>
+
+        <div class="perk-item">
+            <div class="perk-icon">🌐</div>
+            <p class="perk-text">GlamLingua — <b>€2/hr</b></p>
+        </div>
+
+        <div class="perk-item">
+            <div class="perk-icon">🎥</div>
+            <p class="perk-text">GlamFaceTime — <b>€2/hr</b></p>
+        </div>
+
+        <div class="perk-item">
+            <div class="perk-icon">💼</div>
+            <p class="perk-text">GlamWorks — <b>€2/hr</b></p>
+        </div>
+
+        <div class="perk-item">
+            <div class="perk-icon">🌙</div>
+            <p class="perk-text">GlamDarkMode — <b>€2/hr</b></p>
+        </div>
+
+        <div class="perk-item">
+            <div class="perk-icon">🛡️</div>
+            <p class="perk-text">2nd Indirect Commission — <b>₦100</b></p>
+        </div>
+
+        <div class="perk-item">
+            <div class="perk-icon">📖</div>
+            <p class="perk-text">Glam Reward — <b>₦10,000 (5€)</b></p>
+        </div>
+
+        <div class="perk-item">
+            <div class="perk-icon">📊</div>
+            <p class="perk-text">Total GlamGains — <b>€12/hr</b></p>
+        </div>
+    </div>
+
+    <div class="pay-btn-container">
+        <button class="pay-btn" onclick="window.location.href='payment.html'">INITIALIZE PAYMENT →</button>
+        <div class="footer-note">SECURED BY PAYSTACK • INSTANT ACTIVATION</div>
+    </div>
+</div>
+
 </body>
 </html>
