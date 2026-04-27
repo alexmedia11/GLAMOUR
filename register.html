@@ -9,70 +9,91 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
         body { background-color: #000; color: #fff; display: flex; justify-content: center; align-items: flex-start; min-height: 100vh; padding: 20px; }
         .container { width: 100%; max-width: 480px; display: flex; flex-direction: column; padding: 40px 10px; }
-        .logo-placeholder { margin-bottom: 25px; display: flex; justify-content: center; }
+        
+        .logo-placeholder { margin-bottom: 25px; display: flex; justify-content: center; font-size: 40px; }
         h1 { font-size: 36px; font-weight: 700; margin-bottom: 8px; }
         .subtitle { font-size: 16px; color: #888; margin-bottom: 40px; }
-        .form-group { margin-bottom: 24px; }
-        label { display: block; font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
-        .input-container { width: 100%; display: flex; align-items: center; background-color: #111; border: 1.5px solid #222; border-radius: 12px; padding: 16px; }
-        .icon { font-size: 18px; margin-right: 15px; opacity: 0.7; }
-        input { flex: 1; background: transparent; border: none; color: #fff; font-size: 16px; outline: none; }
         
-        /* Error state styling */
-        .input-container.error { border-color: #ff4444; }
+        .form-group { margin-bottom: 20px; position: relative; }
+        label { display: block; font-size: 11px; color: #666; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; font-weight: 600; }
+        
+        .input-container { 
+            width: 100%; display: flex; align-items: center; background-color: #0a0a0a; 
+            border: 1px solid #222; border-radius: 12px; padding: 16px; 
+            transition: all 0.3s ease; 
+        }
+        
+        .icon { font-size: 18px; margin-right: 15px; opacity: 0.5; }
+        input { flex: 1; background: transparent; border: none; color: #fff; font-size: 15px; outline: none; }
+        
+        /* Error State */
+        .error-border { border-color: #ff4444 !important; box-shadow: 0 0 8px rgba(255, 68, 68, 0.2); }
+        .error-text { 
+            color: #ff4444; font-size: 11px; margin-top: 6px; 
+            display: none; font-weight: 500; animate: fadeIn 0.3s ease;
+        }
 
         .continue-btn {
-            width: 100%; background-color: #eab308; color: #000; border: none; padding: 18px;
-            border-radius: 30px; font-size: 14px; font-weight: 600; text-transform: uppercase;
+            width: 100%; background-color: #eab308; color: #000; border: none; padding: 20px;
+            border-radius: 30px; font-size: 14px; font-weight: 700; text-transform: uppercase;
             cursor: pointer; margin-top: 30px; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 10px 20px rgba(234, 179, 8, 0.15);
         }
-        .footer-note { margin-top: 30px; text-align: center; font-size: 12px; color: #666; }
+
+        .footer-note { margin-top: 30px; text-align: center; font-size: 12px; color: #444; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div class="logo-placeholder">
-        <span style="font-size: 40px;">❄️</span>
-    </div>
+    <div class="logo-placeholder">❄️</div>
 
     <h1>Sign Up</h1>
     <p class="subtitle">Create your professional Glamour account.</p>
 
-    <form id="registrationForm">
+    <form id="regForm">
         <div class="form-group">
             <label>Full Name</label>
-            <div class="input-container">
+            <div class="input-container" id="cont-fullname">
                 <span class="icon">👤</span>
-                <input type="text" placeholder="John Doe" id="fullname" required>
+                <input type="text" placeholder="John Doe" id="fullname">
             </div>
+            <div class="error-text" id="err-fullname">Please enter your full name</div>
         </div>
 
         <div class="form-group">
             <label>Username</label>
-            <div class="input-container">
+            <div class="input-container" id="cont-username">
                 <span class="icon">🏷️</span>
-                <input type="text" placeholder="@glamour_pro" id="username" required>
+                <input type="text" placeholder="@glamour_pro" id="username">
             </div>
+            <div class="error-text" id="err-username">Choose a username</div>
         </div>
 
         <div class="form-group">
             <label>Email Address</label>
-            <div class="input-container">
+            <div class="input-container" id="cont-email">
                 <span class="icon">✉️</span>
-                <input type="email" placeholder="name@example.com" id="email" required>
+                <input type="email" placeholder="name@example.com" id="email">
             </div>
+            <div class="error-text" id="err-email">Enter a valid email address</div>
         </div>
 
         <div class="form-group">
             <label>Password</label>
-            <div class="input-container">
+            <div class="input-container" id="cont-password">
                 <span class="icon">🔒</span>
-                <input type="password" placeholder="••••••••" id="password" required>
+                <input type="password" placeholder="••••••••" id="password">
             </div>
+            <div class="error-text" id="err-password">Password is required</div>
         </div>
 
-        <button type="button" class="continue-btn" onclick="validateAndContinue()">
+        <button type="button" class="continue-btn" onclick="checkForm()">
             Continue to Packages →
         </button>
     </form>
@@ -81,27 +102,36 @@
 </div>
 
 <script>
-function validateAndContinue() {
-    // Get all input values
-    const name = document.getElementById('fullname').value.trim();
-    const user = document.getElementById('username').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const pass = document.getElementById('password').value.trim();
+function checkForm() {
+    const fields = ['fullname', 'username', 'email', 'password'];
+    let isFormValid = true;
 
-    // Check if any field is empty
-    if (name === "" || user === "" || email === "" || pass === "") {
-        alert("Please fill in all your details to create your account.");
-        return; // Stops the function here
+    fields.forEach(field => {
+        const input = document.getElementById(field);
+        const container = document.getElementById('cont-' + field);
+        const error = document.getElementById('err-' + field);
+
+        if (input.value.trim() === "") {
+            container.classList.add('error-border');
+            error.style.display = 'block';
+            isFormValid = false;
+        } else {
+            container.classList.remove('error-border');
+            error.style.display = 'none';
+        }
+    });
+
+    // Special check for email format
+    const emailInput = document.getElementById('email');
+    if (emailInput.value.trim() !== "" && !emailInput.value.includes('@')) {
+        document.getElementById('cont-email').classList.add('error-border');
+        document.getElementById('err-email').style.display = 'block';
+        isFormValid = false;
     }
 
-    // Check if email looks valid (has @)
-    if (!email.includes("@")) {
-        alert("Please enter a valid email address.");
-        return;
+    if (isFormValid) {
+        window.location.href = 'plans.html';
     }
-
-    // If everything is fine, move to the next page
-    window.location.href = 'plans.html';
 }
 </script>
 
