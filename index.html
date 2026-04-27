@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glamour - Earn From Your Lifestyle</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: radial-gradient(circle at top, #1a1a1a, #000);
+    color: white;
+}
+
+
+/* Fix for the Header/Logo */
+.header-top {
+    padding: 30px 0;
+    text-align: center;
+    background: #000;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column; /* Stacks sparkles and text */
+    align-items: center;
+    gap: 8px;
+}
+
+.brand-name {
+    font-size: 28px;
+    letter-spacing: 8px; /* Adds that luxury spacing */
+    color: #fff;
+    margin: 5px 0;
+    font-weight: 900;
+}
+
+.sparkle {
+    font-size: 24px;
+}
+
+/* Fix for the small images you mentioned */
+img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+    border-radius: 12px; /* Optional: adds a slight curve to the corners */
+}
+
+
+/* 2. Centers the text in the middle of the screen */
+.hero {
+    text-align: center;
+    padding: 60px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero-title {
+    font-size: 2.5rem;
+    color: #d4af37; /* Gold Title */
+    margin-bottom: 15px;
+}
+
+.hero-subtitle {
+    color: #cccccc;
+    max-width: 600px;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 15px 30px;
+    background: gold;
+    color: black;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: bold;
+}
+
+.section {
+    padding: 40px 20px;
+}
+
+.section h2 {
+    text-align: center;
+    color: gold;
+    margin-bottom: 30px;
+}
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.card {
+    background: #111;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 1px solid gold;
+    transition: all 0.4s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 10px 30px rgba(255,215,0,0.3);
+}
+.card img {
+    width: 60%;
+    height: auto;
+    display: block;
+}
+
+.card-content {
+    padding: 15px;
+}
+
+.card h3 {
+    color: gold;
+    margin-bottom: 10px;
+}
+
+.footer {
+    text-align: center;
+    padding: 20px;
+    background: #000;
+    color: gold;
+}
+.fade {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.fade.show {
+    opacity: 1;
+    transform: translateY(0);
+    
+}
+
+/* The Create Account Button */
+.create-btn {
+    display: inline-block;
+    background-color: #ffffff; /* Clean white button */
+    color: #000000;
+    padding: 12px 30px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.create-btn:hover {
+    background-color: #d4af37; /* Turns gold on hover */
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+.live-earnings {
+    background-color: #000;
+    color: white;
+    padding: 40px 20px;
+    font-family: 'Segoe UI', sans-serif;
+    max-width: 800px;
+    margin: auto;
+}
+
+.earnings-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.earnings-header h2 {
+    letter-spacing: 3px;
+    margin-bottom: 5px;
+}
+
+.earnings-header p {
+    color: #666;
+    font-size: 14px;
+}
+
+.earnings-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Header row styling */
+.earnings-table th {
+    color: #d4af37; /* Gold color */
+    text-align: left;
+    font-size: 12px;
+    padding-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+/* Row spacing and text */
+.earnings-table td {
+    padding: 15px 0;
+    font-size: 15px;
+    border-bottom: 1px solid #111; /* Subtle line between rows */
+}
+
+/* Rank Badge Styling */
+.rank-circle {
+    background-color: #3d1a00; /* Dark brownish circle */
+    color: #d4af37;
+    padding: 5px 10px;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Earnings Column Styling */
+.amount {
+    color: #00ff88; /* Bright Green */
+    font-weight: bold;
+    text-align: right;
+}
+
+/* The small notification at the bottom */
+.live-toast {
+    margin-top: 30px;
+    font-size: 13px;
+    color: #888;
+    text-align: left;
+    padding-left: 10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header-top">
+    <div class="logo">
+        <span class="sparkle">✨</span>
+        <h1 class="brand-name">GLAMOUR</h1>
+        <span class="sparkle">✨</span>
+    </div>
+</div>
+
+<section class="hero">
+    <h1 class="hero-title">Turn Your Lifestyle Into Income</h1>
+    <p class="hero-subtitle">
+        Glamour is a European institution that partners with Africans to showcase your lifestyle, 
+        creativity, and daily habits — and get paid. Your life becomes your income.
+    </p>
+    
+    <a href="register.html" class="create-btn">Create an Account &rarr;</a>
+</section>
+
+<img src="images/glam-beginning.jpg" alt="Glamour"/> 
+
+<h1>How Earnings Work on Glamour</h1>
+
+<img src="images/glam-whatisglamour.jpg" alt="what is glamour"/>
+<ul>
+  <li><strong>ACCESS FEE:</strong> N14,000 Onboarding fee which is used to create a personalized profile for you.</li>
+  <li><strong>Glam Real-time:</strong> Earn N3,000 every 15 minutes of active engagement — that's up to N12,000 per hour, with no withdrawal delays.</li>
+  <li><strong>Video Script Writing:</strong> Established content creators are willing to hire you so you can help them write scripts for their videos</li>
+  <li><strong>Glam Lingua:</strong> That your foreign language has more to it than you know! Europeans want to learn and understand local languages, you earn N2,000 per hour for teaching any language.</li>
+  <li><strong>Glam 9-5 Works:</strong> Upload your CV here! Companies have entrusted us to help them find & connect with competent certificate holders. You can upload your resume on Glamour and get hired within 1 week.</li>
+  <li><strong>Glam Lifestyle:</strong> Share videos about your daily activities, choices and decisions, in exchange for N3,000 per hour</li>
+  <li><strong>Exclusive Bonus:</strong> Enjoy a €5 free daily incentives from our partners.</li>
+  <li>Active</li>
+</ul>
+
+<section class="section">
+<h2>Glamour Features</h2>
+
+<div class="features">
+
+<div class="card">
+<img src="images/glam-lifestyle.jpg" alt="Glam Lifestyle">
+<div class="card-content">
+<h3>Glam Lifestyle</h3>
+<p> Getting Paid for Basically how you live your life?? That is the basis of GLAMOUR.
+
+On Glamour, our European Counterparts, Lifestyle Hub, have created this specific system where Our Users get paid for their everyday lifestyle... So;
+• Showcasing your daily Routines, Your Outfits, Get Ready with me Videos, And your creativity gets you Paid In Euros & Pounds.  .</p>
+</div>
+</div>
+
+<div class="card">
+<img src="images/glam-realtime.jpg" alt="Glam Realtime">
+<div class="card-content">
+<h3>Glam Realtime</h3>
+<p> Pictures Tell It All 📷... And with GlamRealtime, you get paid for Living in the Moment.
+
+On Glamour, you're connected with Foreign Counterparts, and there's always a genuine fascination amongst them, with How we live our lives over here...
+
+You can showcase what you're doing at any time in real-time on Glamour... Take pictures of the places you went to, your favourite spots in your town, your current mood... With GlamRealtime, users help foreigners understand how we live on a daily basis, and they get paid for it. .</p>
+</div>
+</div>
+
+<div class="card">
+<img src="images/glam-cuisine.jpg" alt="Glam Cuisine">
+<div class="card-content">
+<h3>Glam Cuisine</h3>
+<p> As a User on Glamour, Your Food is Global Content... You can showcase your indigenous foods, and teach the recipes of these local foods to your European counterparts and you earn from it.
+
+Your Favourite dishes, your local foods and gourmet meals can now earn you extra money.
+
+On Glamour, you showcase your people, your tribe, your Culture to the world, And You get Paid 💯  .</p>
+</div>
+</div>
+
+<div class="card">
+<img src="images/glam-facetime.jpg" alt="Glam FaceTime">
+<div class="card-content">
+<h3>Glam FaceTime</h3>
+<p> On, Glamour once you get registered, you get paired with a European Glamour User as well... And from here, is where money flows 💶💷.
+
+With GlamFaceTime, you can chat with your European counterpart, Call them when they're bored, help them with lifestyle advice, or even Babysit their children Virtually to get Paid in Euros 🧡
+
+Glamour ensures you make extra money with any free time you have  .</p>
+</div>
+</div>
+
+
+<div class="card">
+<img src="images/script2cash.jpg" alt="Script2Cash">
+<div class="card-content">
+<h3>Script2Cash</h3>
+<p> Here, Glamour Pays users for Bringing Content to life everyday!!! Videos and Content are what you already do everyday on Tiktok and Instagram, but you'll be doing it to get Paid...
+You simply, take the daily scripts for videos from the platform, turn it into a video or short reel, post on your social media and share the link to get Paid in Euros and Pounds on Glamour.
+
+So... Showcase your creativity, showcase your vibes, show your Glam, and Let Glamour give you a SoftLife.🤩  .</p>
+</div>
+</div>
+
+<div class="card">
+<img src="images/glam-work.jpg" alt="Glam Works">
+<div class="card-content">
+<h3>Glam Works</h3>
+<p> Glamour doesn't just let you showcase your lifestyle to earn... Glamour also Provides real remote job opportunities to all users.
+
+With GlamWorks, once you sign up, you list any skill you have on our Platform, and you're connected with European firms that need your services. You work these remote jobs and you get paid per hour in Euros 🧡.
+
+On Glamour, We are here for everyone.... Even if you love the 9 to 5 pattern, we got you covered 😌🔥 .</p>
+</div>
+</div>
+
+<div class="card">
+<img src="images/glam-status.jpg" alt="Glam Status">
+<div class="card-content">
+<h3>Glam Status</h3>
+<p> Just like you post on your WhatsApp status about how you feel, where you are, the funny memes you saw, and the banter Tweets you saw... You can do the same on Glamour with the Glam status, and earn for it.
+
+In the same way you save contacts that view your status, once you sign up and start connecting with your European counterparts on Glamour, they can view your GlamStatus and you get paid for every view. 
+
+The more eyes on your content, the bigger your rewards. Shine on your Glam Status, go viral, and turn your posts into cash.✨  .</p>
+</div>
+</div>
+
+
+
+</section>
+
+
+<div id="popup" style="
+position:fixed;
+bottom:20px;
+left:20px;
+background:#111;
+color:white;
+padding:15px 20px;
+border-radius:10px;
+border:1px solid gold;
+display:none;
+box-shadow:0 0 10px rgba(255,215,0,0.5);
+font-size:14px;
+z-index:1000;">
+</div>
+
+<script>
+const users = [
+"Kelvin from Lagos just made a withdrawal of ₦74,000",
+"Amaka from Abuja just made a withdrawal of  ₦52,000",
+"John from UK just made a withdrawal of  €120",
+"Fatima from Kano just made a withdrawal of  ₦38,000",
+"David from Ghana just made a withdrawal of €95"
+]
+
+function showPopup() {
+let popup = document.getElementById("popup");
+let random = users[Math.floor(Math.random() * users.length)];
+
+popup.innerHTML = "🔥 " + random;
+popup.style.display = "block";
+
+setTimeout(() => {
+popup.style.display = "none";
+}, 4000);
+}
+
+setInterval(showPopup, 6000);
+</script>
+
+<script>
+const faders = document.querySelectorAll('.fade');
+
+window.addEventListener('scroll', () => {
+faders.forEach(el => {
+let top = el.getBoundingClientRect().top;
+if(top < window.innerHeight - 50){
+el.classList.add('show');
+}
+});
+});
+</script>
+
+<section class="section">
+<h1>  See How Purple Speedy Is Turning Lifestyle Into Income 💰✨
+</h1>
+
+<div style="
+max-width:800px;
+margin:auto;
+border-radius:15px;
+overflow:hidden;
+box-shadow:0 0 20px rgba(255,215,0,0.3);
+">
+
+<div class="video-container" style="position: relative; width: 100%; max-width: 400px; margin: 20px auto; aspect-ratio: 9/16; overflow: hidden; border-radius: 15px; border: 2px solid #d4af37; background: #000;">
+    <iframe 
+        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+        src="https://www.youtube.com/embed/ohll358nsGE?autoplay=1&mute=1&loop=1&playlist=ohll358nsGE&controls=1&rel=0&origin=https://yourusername.github.io" 
+        frameborder="0" 
+        allow="autoplay; encrypted-media; picture-in-picture" 
+        allowfullscreen>
+    </iframe>
+</div>
+
+</div>
+
+
+
+</section>
+
+<section class="live-earnings">
+    <div class="earnings-header">
+        <h2>LIVE EARNINGS</h2>
+        <p>2,130 users currently earning on Glamour</p>
+    </div>
+
+    <table class="earnings-table">
+        <thead>
+            <tr>
+                <th>RANK</th>
+                <th>USER</th>
+                <th>LOCATION</th>
+                <th>ACTIVITY</th>
+                <th>EARNINGS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span class="rank-circle">#1</span></td>
+                <td>Coach D</td>
+                <td>Owerri</td>
+                <td>Facetime</td>
+                <td class="amount">€702</td>
+            </tr>
+            <tr>
+                <td><span class="rank-circle">#2</span></td>
+                <td>Tunde</td>
+                <td>Owerri</td>
+                <td>Glam Status</td>
+                <td class="amount">€592</td>
+            </tr>
+            <tr>
+                <td><span class="rank-circle">#3</span></td>
+                <td>Fatima</td>
+                <td>Abuja</td>
+                <td>Glam Works</td>
+                <td class="amount">€487</td>
+            </tr>
+            <tr>
+                <td><span class="rank-circle">#4</span></td>
+                <td>Emeka</td>
+                <td>Owerri</td>
+                <td>Glam Fitness</td>
+                <td class="amount">€312</td>
+            </tr>
+            <tr>
+                <td><span class="rank-circle">#5</span></td>
+                <td>Tunde</td>
+                <td>Enugu</td>
+                <td>Glam Status</td>
+                <td class="amount">€308</td>
+            </tr>
+            <tr>
+                <td><span class="rank-circle">#6</span></td>
+                <td>Samuel</td>
+                <td>Port Harcourt</td>
+                <td>Glam Lingua</td>
+                <td class="amount">€292</td>
+            </tr>
+            <tr>
+                <td><span class="rank-circle">#7</span></td>
+                <td>Blessing</td>
+                <td>Enugu</td>
+                <td>Glam Fitness</td>
+                <td class="amount">€128</td>
+            </tr>
+            </tbody>
+    </table>
+
+    <div class="live-toast">
+        Samuel from Abuja just earned €12
+    </div>
+</section>
+
+<section class="hero">
+<h1>Ready to Start Earning?</h1>
+<p>Position yourself early and take advantage of this opportunity.</p>
+
+<a href="register.html" class="btn">Create an Account</a>
+</section>
+  
+<!-- 💬 TESTIMONIALS -->
+<section class="section">
+  <h2>What Members Are Saying</h2>
+
+  <div class="testimonial">
+    <p>"I was not sure at first, but after joining, I understood how it works. I’ve already made my first withdrawal."</p>
+    <h4>— Chinedu, Lagos</h4>
+  </div>
+
+  <div class="testimonial">
+    <p>"The platform is simple to use and the activities are easy. I like how everything is tracked on the dashboard."</p>
+    <h4>— Blessing, Abuja</h4>
+  </div>
+
+  <div class="testimonial">
+    <p>"I joined through a friend and I’ve been active since then. The weekly withdrawal for referrals is fast."</p>
+    <h4>— Emeka, Port Harcourt</h4>
+  </div>
+
+</section>
+
+<div class="footer">
+© 2026 Glamour. All Rights Reserved.
+</div>
+
+</body>
+</html>
