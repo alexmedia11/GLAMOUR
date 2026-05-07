@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glamour | Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background-color: #050505; color: #fff; padding: 20px; }
+        
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .welcome-text h2 { font-size: 18px; color: #888; font-weight: 400; }
+        .welcome-text span { color: #eab308; font-weight: 700; font-size: 22px; }
+
+        /* The Balance Card */
+        .balance-card {
+            background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
+            border: 1px solid #eab30833;
+            border-radius: 24px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .balance-label { font-size: 12px; text-transform: uppercase; color: #888; letter-spacing: 2px; }
+        .balance-amount { font-size: 48px; font-weight: 700; margin: 10px 0; color: #fff; }
+
+        /* Action Buttons */
+        .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 30px; }
+        .btn {
+            padding: 15px; border-radius: 15px; border: none; font-weight: 600;
+            cursor: pointer; transition: 0.3s; font-size: 14px;
+        }
+        .btn-activate { background: #eab308; color: #000; }
+        .btn-withdraw { background: #1a1a1a; color: #fff; border: 1px solid #333; }
+
+        /* Feature Grid (Locked) */
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .item {
+            background: #111; padding: 20px; border-radius: 20px;
+            text-align: center; opacity: 0.5; border: 1px solid #222;
+        }
+        .item i { display: block; font-size: 24px; margin-bottom: 10px; }
+        
+        /* The "Old Alert" alternative: A clean notification */
+        #toast {
+            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+            background: #ff4444; color: white; padding: 12px 25px;
+            border-radius: 50px; font-size: 13px; display: none; z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="welcome-text">
+            <h2>Welcome back,</h2>
+            <span id="display-username">Member</span>
+        </div>
+        <div style="font-size: 24px;">❄️</div>
+    </div>
+
+    <div class="balance-card">
+        <p class="balance-label">Total Balance</p>
+        <p class="balance-amount">₦12,000</p>
+    </div>
+
+    <div class="actions">
+        <button class="btn btn-activate" onclick="location.href='plans.html'">ACTIVATE</button>
+        <button class="btn btn-withdraw" onclick="showLocked()">WITHDRAW</button>
+    </div>
+
+    <div class="grid">
+        <div class="item" onclick="showLocked()"><i>📊</i> Tasks</div>
+        <div class="item" onclick="showLocked()"><i>👥</i> Referrals</div>
+        <div class="item" onclick="showLocked()"><i>🎁</i> Rewards</div>
+        <div class="item" onclick="showLocked()"><i>⚙️</i> Settings</div>
+    </div>
+
+    <div id="toast">Activate your account first!</div>
+
+    <script>
+        // 1. Get the name from memory
+        const savedName = localStorage.getItem('glamourUser');
+        if (savedName) {
+            document.getElementById('display-username').innerText = savedName;
+        }
+
+        // 2. Show the custom locked message
+        function showLocked() {
+            const toast = document.getElementById('toast');
+            toast.style.display = 'block';
+            setTimeout(() => { toast.style.display = 'none'; }, 3000);
+        }
+    </script>
+</body>
+</html>
