@@ -30,7 +30,7 @@
         .error-border { border-color: #ff4444 !important; box-shadow: 0 0 8px rgba(255, 68, 68, 0.2); }
         .error-text { 
             color: #ff4444; font-size: 11px; margin-top: 6px; 
-            display: none; font-weight: 500; animate: fadeIn 0.3s ease;
+            display: none; font-weight: 500; animation: fadeIn 0.3s ease;
         }
 
         .continue-btn {
@@ -94,7 +94,7 @@
         </div>
 
         <button type="button" class="continue-btn" onclick="checkForm()">
-            Continue to Packages →
+            Continue to Dashboard →
         </button>
     </form>
 
@@ -121,7 +121,6 @@ function checkForm() {
         }
     });
 
-    // Special check for email format
     const emailInput = document.getElementById('email');
     if (emailInput.value.trim() !== "" && !emailInput.value.includes('@')) {
         document.getElementById('cont-email').classList.add('error-border');
@@ -130,7 +129,13 @@ function checkForm() {
     }
 
     if (isFormValid) {
-        window.location.href = 'plans.html';
+        // --- DATA SAVING LOGIC ---
+        const usernameValue = document.getElementById('username').value;
+        // Save the username to the browser memory
+        localStorage.setItem('glamourUser', usernameValue); 
+        
+        // Take them to the dashboard instead of directly to packages
+        window.location.href = 'dashboard.html';
     }
 }
 </script>
