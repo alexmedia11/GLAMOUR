@@ -49,6 +49,48 @@
             background: #ff4444; color: white; padding: 12px 25px;
             border-radius: 50px; font-size: 13px; display: none; z-index: 1000;
         }
+
+        /* Social Proof Popup Styling */
+#notification-box {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(20, 20, 20, 0.95);
+    border-left: 4px solid #eab308;
+    padding: 12px 18px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    transform: translateX(-150%);
+    transition: transform 0.5s ease-in-out;
+    z-index: 9999;
+    max-width: 280px;
+}
+
+.notif-icon {
+    background: #eab308;
+    color: #000;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.notif-text {
+    font-size: 12px;
+    color: #eee;
+    line-height: 1.4;
+}
+
+.notif-text b { color: #eab308; }
+
+.show-notif { transform: translateX(0) !important; }
     </style>
 </head>
 <body>
@@ -80,6 +122,12 @@
 
     <div id="toast">Activate your account first!</div>
 
+    <div id="notification-box">
+    <div class="notif-icon" id="notif-initial">G</div>
+    <div class="notif-text" id="notif-content">
+        </div>
+</div>
+
     <script>
         // 1. Get the name from memory
         const savedName = localStorage.getItem('glamourUser');
@@ -93,6 +141,39 @@
             toast.style.display = 'block';
             setTimeout(() => { toast.style.display = 'none'; }, 3000);
         }
+
+
+        const names = ["Tunde", "Amaka", "Oshodi", "Blessing", "Chidi", "Efe", "Zainab", "Musa", "Ibrahim", "Nkechi", "Segun", "Favour"];
+const actions = ["just joined Glamour!", "just activated Premium.", "withdrew ₦45,000 successfully.", "just earned ₦5,000 from tasks.", "started a new package!"];
+
+function showFakeNotification() {
+    const box = document.getElementById('notification-box');
+    const content = document.getElementById('notif-content');
+    const initial = document.getElementById('notif-initial');
+
+    // Pick random name and action
+    const randomName = names[Math.floor(Math.random() * names.length)];
+    const randomAction = actions[Math.floor(Math.random() * actions.length)];
+
+    // Update content
+    content.innerHTML = `<b>${randomName}</b> ${randomAction}`;
+    initial.innerText = randomName.charAt(0);
+
+    // Show the box
+    box.classList.add('show-notif');
+
+    // Hide it after 4 seconds
+    setTimeout(() => {
+        box.classList.remove('show-notif');
+    }, 4000);
+
+    // Run again in 8 to 12 seconds
+    const nextRun = Math.floor(Math.random() * (12000 - 8000) + 8000);
+    setTimeout(showFakeNotification, nextRun);
+}
+
+// Start the loop after 3 seconds
+setTimeout(showFakeNotification, 3000);
     </script>
 </body>
 </html>
