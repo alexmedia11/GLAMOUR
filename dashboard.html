@@ -2,178 +2,279 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Glamour | Dashboard</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background-color: #050505; color: #fff; padding: 20px; }
+        body { background-color: #050505; color: #fff; padding: 20px; padding-bottom: 40px; }
         
-        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
-        .welcome-text h2 { font-size: 18px; color: #888; font-weight: 400; }
-        .welcome-text span { color: #eab308; font-weight: 700; font-size: 22px; }
+        /* Navbar */
+        .navbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+        .nav-left { display: flex; align-items: center; gap: 15px; }
+        .hamburger { font-size: 24px; cursor: pointer; }
+        .logo { font-size: 20px; font-weight: 700; letter-spacing: 1px; }
+        .currency-badge { 
+            background: #111; border: 1px solid #333; padding: 5px 12px; 
+            border-radius: 20px; font-size: 12px; font-weight: 600; color: #eab308;
+            display: flex; align-items: center; gap: 5px; cursor: pointer;
+        }
 
-        /* The Balance Card */
+        /* Welcome Section */
+        .welcome-header { margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center; }
+        .welcome-text h2 { font-size: 14px; color: #888; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
+        .welcome-text span { color: #fff; font-weight: 700; font-size: 24px; }
+        .brand-icon { font-size: 30px; opacity: 0.9; }
+
+        /* The Flipping Balance Cards */
+        .card-container { cursor: pointer; position: relative; margin-bottom: 25px; perspective: 1000px; }
         .balance-card {
-            background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
-            border: 1px solid #eab30833;
-            border-radius: 24px;
-            padding: 30px;
-            text-align: center;
-            margin-bottom: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            background: linear-gradient(145deg, #eab308 0%, #b48500 100%);
+            border-radius: 20px; padding: 25px; color: #000;
+            box-shadow: 0 10px 25px rgba(234, 179, 8, 0.15);
+            transition: all 0.4s ease;
+            position: relative; overflow: hidden;
         }
-        .balance-label { font-size: 12px; text-transform: uppercase; color: #888; letter-spacing: 2px; }
-        .balance-amount { font-size: 48px; font-weight: 700; margin: 10px 0; color: #fff; }
+        /* A subtle dark accent under the card to match your image */
+        .card-shadow {
+            position: absolute; bottom: -8px; left: 5%; width: 90%; height: 20px;
+            background: #2a1f00; border-radius: 20px; z-index: -1;
+        }
 
-        /* Action Buttons */
-        .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 30px; }
-        .btn {
-            padding: 15px; border-radius: 15px; border: none; font-weight: 600;
-            cursor: pointer; transition: 0.3s; font-size: 14px;
-        }
-        .btn-activate { background: #eab308; color: #000; }
-        .btn-withdraw { background: #1a1a1a; color: #fff; border: 1px solid #333; }
-
-        /* Feature Grid (Locked) */
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .item {
-            background: #111; padding: 20px; border-radius: 20px;
-            text-align: center; opacity: 0.5; border: 1px solid #222;
-        }
-        .item i { display: block; font-size: 24px; margin-bottom: 10px; }
+        .card-header { font-size: 12px; text-transform: uppercase; font-weight: 600; opacity: 0.8; letter-spacing: 1px; }
+        .card-amount { font-size: 42px; font-weight: 700; margin: 5px 0 20px 0; }
         
-        /* The "Old Alert" alternative: A clean notification */
-        #toast {
-            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
-            background: #ff4444; color: white; padding: 12px 25px;
-            border-radius: 50px; font-size: 13px; display: none; z-index: 1000;
+        .card-actions { display: flex; gap: 15px; }
+        .btn-card {
+            flex: 1; padding: 12px; border-radius: 12px; border: none; font-weight: 700;
+            cursor: pointer; font-size: 14px; transition: 0.2s; text-transform: uppercase;
+        }
+        .btn-activate { background: #000; color: #eab308; }
+        .btn-withdraw { background: rgba(0,0,0,0.1); color: #000; border: 1px solid rgba(0,0,0,0.2); }
+
+        /* Hide the second card by default */
+        #card-reward { display: none; }
+
+        /* Earning Hub (Replaces Voice Notes) */
+        .section-title { font-size: 11px; color: #666; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px; font-weight: 600; }
+        .earning-hub {
+            background: #0f0f0f; border: 1px solid #1a1a1a; border-radius: 20px; padding: 20px; margin-bottom: 25px;
+        }
+        .earn-item {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 15px 0; border-bottom: 1px solid #1a1a1a; cursor: pointer;
+        }
+        .earn-item:last-child { border-bottom: none; padding-bottom: 0; }
+        .earn-left { display: flex; align-items: center; gap: 15px; }
+        .earn-icon { background: #1a1a1a; width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+        .earn-text h4 { font-size: 15px; font-weight: 600; color: #fff; }
+        .earn-text p { font-size: 12px; color: #888; }
+        .earn-arrow { color: #444; }
+
+        /* Private Network Link */
+        .link-container {
+            background: #0f0f0f; border: 1px solid #1a1a1a; border-radius: 16px; padding: 15px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .link-input {
+            background: transparent; border: none; color: #888; font-size: 13px;
+            width: 100%; outline: none; pointer-events: none;
+        }
+        .copy-btn {
+            background: #1a1a1a; border: 1px solid #333; color: #eab308;
+            padding: 10px; border-radius: 10px; cursor: pointer; font-size: 16px;
         }
 
-        /* Social Proof Popup Styling */
-#notification-box {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    background: rgba(20, 20, 20, 0.95);
-    border-left: 4px solid #eab308;
-    padding: 12px 18px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-    transform: translateX(-150%);
-    transition: transform 0.5s ease-in-out;
-    z-index: 9999;
-    max-width: 280px;
-}
+        /* --- THE MODAL OVERLAY --- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(5px);
+            display: flex; justify-content: center; align-items: center;
+            z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+        }
+        .modal-overlay.active { opacity: 1; pointer-events: all; }
+        
+        .modal-content {
+            background: #0a0a0a; border: 1px solid #222; border-radius: 24px;
+            width: 90%; max-width: 340px; padding: 30px 25px; text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8); transform: translateY(20px);
+            transition: transform 0.3s ease; position: relative;
+        }
+        .modal-overlay.active .modal-content { transform: translateY(0); }
+        
+        .close-modal {
+            position: absolute; top: 15px; right: 20px; font-size: 24px; color: #666;
+            cursor: pointer; background: none; border: none;
+        }
+        .modal-icon {
+            background: rgba(234, 179, 8, 0.1); color: #eab308; width: 70px; height: 70px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 30px; margin: 0 auto 20px auto; border: 1px solid rgba(234, 179, 8, 0.2);
+        }
+        .modal-content h3 { font-size: 22px; font-weight: 700; margin-bottom: 10px; }
+        .modal-content p { font-size: 13px; color: #888; line-height: 1.6; margin-bottom: 25px; }
+        .btn-modal-activate {
+            width: 100%; background: #eab308; color: #000; padding: 18px;
+            border-radius: 30px; font-weight: 700; border: none; cursor: pointer; font-size: 15px;
+        }
 
-.notif-icon {
-    background: #eab308;
-    color: #000;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 14px;
-}
-
-.notif-text {
-    font-size: 12px;
-    color: #eee;
-    line-height: 1.4;
-}
-
-.notif-text b { color: #eab308; }
-
-.show-notif { transform: translateX(0) !important; }
     </style>
 </head>
 <body>
 
-    <div class="header">
+    <div class="navbar">
+        <div class="nav-left">
+            <span class="hamburger">≡</span>
+            <span class="logo">Glamour</span>
+        </div>
+        <div class="currency-badge">
+            Premium NGN ▼
+        </div>
+    </div>
+
+    <div class="welcome-header">
         <div class="welcome-text">
-            <h2>Welcome back,</h2>
-            <span id="display-username">Member</span>
+            <h2>Dashboard</h2>
+            Welcome <span id="display-username">King</span>
         </div>
-        <div style="font-size: 24px;">❄️</div>
+        <div class="brand-icon">❄️</div>
     </div>
 
-    <div class="balance-card">
-        <p class="balance-label">Total Balance</p>
-        <p class="balance-amount">₦12,000</p>
-    </div>
-
-    <div class="actions">
-        <button class="btn btn-activate" onclick="location.href='plans.html'">ACTIVATE</button>
-        <button class="btn btn-withdraw" onclick="showLocked()">WITHDRAW</button>
-    </div>
-
-    <div class="grid">
-        <div class="item" onclick="showLocked()"><i>📊</i> Tasks</div>
-        <div class="item" onclick="showLocked()"><i>👥</i> Referrals</div>
-        <div class="item" onclick="showLocked()"><i>🎁</i> Rewards</div>
-        <div class="item" onclick="showLocked()"><i>⚙️</i> Settings</div>
-    </div>
-
-    <div id="toast">Activate your account first!</div>
-
-    <div id="notification-box">
-    <div class="notif-icon" id="notif-initial">G</div>
-    <div class="notif-text" id="notif-content">
+    <div class="card-container" onclick="toggleCards()">
+        
+        <div class="balance-card" id="card-income">
+            <div class="card-header">Total Income</div>
+            <div class="card-amount">₦12,000</div>
+            <div class="card-actions">
+                <button class="btn-card btn-activate" onclick="event.stopPropagation(); location.href='plans.html'">Activate</button>
+                <button class="btn-card btn-withdraw" onclick="event.stopPropagation(); showLockModal()">Withdraw</button>
+            </div>
         </div>
-</div>
+
+        <div class="balance-card" id="card-reward">
+            <div class="card-header">Lifestyle Reward</div>
+            <div class="card-amount">₦5,000</div>
+            <div class="card-actions">
+                <button class="btn-card btn-activate" onclick="event.stopPropagation(); location.href='plans.html'">Activate</button>
+                <button class="btn-card btn-withdraw" onclick="event.stopPropagation(); showLockModal()">Withdraw</button>
+            </div>
+        </div>
+        
+        <div class="card-shadow"></div>
+    </div>
+
+    <div class="section-title">Premium Access Hub</div>
+    <div class="earning-hub">
+        <div class="earn-item" onclick="showLockModal()">
+            <div class="earn-left">
+                <div class="earn-icon">📱</div>
+                <div class="earn-text">
+                    <h4>Social Media Tasks</h4>
+                    <p>Meta & WhatsApp Promos</p>
+                </div>
+            </div>
+            <div class="earn-arrow">➔</div>
+        </div>
+        <div class="earn-item" onclick="showLockModal()">
+            <div class="earn-left">
+                <div class="earn-icon">👥</div>
+                <div class="earn-text">
+                    <h4>Referral Network</h4>
+                    <p>Earn per direct invite</p>
+                </div>
+            </div>
+            <div class="earn-arrow">➔</div>
+        </div>
+        <div class="earn-item" onclick="showLockModal()">
+            <div class="earn-left">
+                <div class="earn-icon">🎁</div>
+                <div class="earn-text">
+                    <h4>Daily Rewards</h4>
+                    <p>Login streaks & bonuses</p>
+                </div>
+            </div>
+            <div class="earn-arrow">➔</div>
+        </div>
+    </div>
+
+    <div class="section-title">Your Private Network Link</div>
+    <div class="link-container">
+        <input type="text" class="link-input" id="affiliate-link" value="https://glamourofficial.com/?ref=user">
+        <button class="copy-btn" onclick="copyLink()">📋</button>
+    </div>
+
+    <div class="modal-overlay" id="lockModal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal()">×</button>
+            <div class="modal-icon">🔒</div>
+            <h3>Activate Account</h3>
+            <p>You currently have a ₦12,000 balance. To withdraw funds and access all premium features, please complete your one-time activation.</p>
+            <button class="btn-modal-activate" onclick="location.href='plans.html'">Activate Now - ₦14,000</button>
+        </div>
+    </div>
 
     <script>
-        // 1. Get the name from memory
-        const savedName = localStorage.getItem('glamourUser');
-        if (savedName) {
-            document.getElementById('display-username').innerText = savedName;
+        // 1. Setup the Username and Link on load
+        window.onload = function() {
+            const savedName = localStorage.getItem('glamourUser') || 'King';
+            
+            // Format the username (remove @ if they added it)
+            const cleanName = savedName.replace('@', '');
+            
+            // Display name
+            document.getElementById('display-username').innerText = cleanName;
+            
+            // Generate Affiliate link
+            const affiliateInput = document.getElementById('affiliate-link');
+            affiliateInput.value = `https://glamourofficial.com/?ref=${cleanName.toLowerCase()}`;
+        };
+
+        // 2. Toggle Balance Cards Logic
+        function toggleCards() {
+            const cardIncome = document.getElementById('card-income');
+            const cardReward = document.getElementById('card-reward');
+
+            if (cardIncome.style.display === "none") {
+                cardIncome.style.display = "block";
+                cardReward.style.display = "none";
+            } else {
+                cardIncome.style.display = "none";
+                cardReward.style.display = "block";
+            }
         }
 
-        // 2. Show the custom locked message
-        function showLocked() {
-            const toast = document.getElementById('toast');
-            toast.style.display = 'block';
-            setTimeout(() => { toast.style.display = 'none'; }, 3000);
+        // 3. Modal Logic
+        function showLockModal() {
+            document.getElementById('lockModal').classList.add('active');
         }
 
+        function closeModal() {
+            document.getElementById('lockModal').classList.remove('active');
+        }
 
-        const names = ["Tunde", "Amaka", "Oshodi", "Blessing", "Chidi", "Efe", "Zainab", "Musa", "Ibrahim", "Nkechi", "Segun", "Favour"];
-const actions = ["just joined Glamour!", "just activated Premium.", "withdrew ₦45,000 successfully.", "just earned ₦5,000 from tasks.", "started a new package!"];
-
-function showFakeNotification() {
-    const box = document.getElementById('notification-box');
-    const content = document.getElementById('notif-content');
-    const initial = document.getElementById('notif-initial');
-
-    // Pick random name and action
-    const randomName = names[Math.floor(Math.random() * names.length)];
-    const randomAction = actions[Math.floor(Math.random() * actions.length)];
-
-    // Update content
-    content.innerHTML = `<b>${randomName}</b> ${randomAction}`;
-    initial.innerText = randomName.charAt(0);
-
-    // Show the box
-    box.classList.add('show-notif');
-
-    // Hide it after 4 seconds
-    setTimeout(() => {
-        box.classList.remove('show-notif');
-    }, 4000);
-
-    // Run again in 8 to 12 seconds
-    const nextRun = Math.floor(Math.random() * (12000 - 8000) + 8000);
-    setTimeout(showFakeNotification, nextRun);
-}
-
-// Start the loop after 3 seconds
-setTimeout(showFakeNotification, 3000);
+        // 4. Copy Link Logic
+        function copyLink() {
+            const linkInput = document.getElementById('affiliate-link');
+            // Create a temporary textarea to copy from (works better on mobile)
+            const temp = document.createElement("textarea");
+            temp.value = linkInput.value;
+            document.body.appendChild(temp);
+            temp.select();
+            document.execCommand("copy");
+            document.body.removeChild(temp);
+            
+            // Give visual feedback
+            const btn = document.querySelector('.copy-btn');
+            btn.innerText = "✓";
+            btn.style.color = "#fff";
+            btn.style.background = "#eab308";
+            
+            setTimeout(() => {
+                btn.innerText = "📋";
+                btn.style.color = "#eab308";
+                btn.style.background = "#1a1a1a";
+            }, 2000);
+        }
     </script>
 </body>
 </html>
