@@ -5,6 +5,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Transfer Details | Glamour</title>
     <style>
+
+        /* --- BANK TRANSFER POPUP STYLES --- */
+.transfer-modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(5px);
+    display: none; /* Hidden by default, JS will show it */
+    justify-content: center; align-items: center;
+    z-index: 9999; padding: 20px;
+    animation: fadeIn 0.3s ease;
+}
+
+.transfer-modal-container {
+    background: #050505; 
+    border: 2px solid #eab308; 
+    border-radius: 24px;
+    width: 100%; max-width: 400px; 
+    padding: 15px;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+}
+
+.close-btn-yellow {
+    position: absolute; top: -15px; right: -10px;
+    background: #eab308; color: #000;
+    width: 35px; height: 35px; border-radius: 50%;
+    border: 2px solid #000; font-size: 20px; font-weight: bold;
+    display: flex; justify-content: center; align-items: center;
+    cursor: pointer; z-index: 10;
+}
+
+.white-card {
+    background: #fff; border-radius: 16px; padding: 20px;
+    color: #000; margin-bottom: 15px;
+}
+
+.white-card h2 { font-size: 24px; color: #1e1b4b; margin-bottom: 5px; font-weight: 800; }
+.white-card p.intro { font-size: 13px; color: #3730a3; margin-bottom: 15px; font-weight: 500; }
+
+/* Bank Logos Grid Simulation */
+.bank-grid {
+    border: 1.5px solid #d8b4fe; border-radius: 12px;
+    padding: 15px; display: grid; grid-template-columns: 1fr 1fr;
+    gap: 15px; margin-bottom: 15px; align-items: center;
+}
+.bank-item { font-size: 15px; font-weight: 700; display: flex; align-items: center; gap: 6px; }
+.b-palmpay { color: #7e22ce; }
+.b-moniepoint { color: #1d4ed8; }
+.b-access { color: #ea580c; }
+.b-kuda { color: #4c1d95; font-style: italic; }
+.b-firstbank { color: #047857; }
+.b-fidelity { color: #15803d; }
+.b-una { color: #0d9488; grid-column: span 2; text-align: center; justify-content: center;}
+
+/* Notice Boxes */
+.notice-box {
+    border-radius: 10px; padding: 12px; display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
+}
+.notice-box p { font-size: 11px; margin: 0; line-height: 1.4; color: #000; }
+.box-icon { font-size: 24px; }
+
+.box-green { background: #ecfdf5; border: 1px solid #a7f3d0; }
+.box-red { background: #fef2f2; border: 1px solid #fecaca; }
+.box-red p strong { color: #dc2626; }
+.box-purple { background: #f3e8ff; border: 1px solid #d8b4fe; display: flex; justify-content: space-between; align-items: center; }
+.box-purple p { color: #4c1d95; font-weight: 600; }
+
+/* Action Button */
+.btn-understand {
+    width: 100%; background: linear-gradient(180deg, #facc15 0%, #ca8a04 100%);
+    color: #000; border: none; padding: 18px; border-radius: 16px;
+    font-weight: 800; font-size: 15px; letter-spacing: 1px; cursor: pointer;
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
         :root { --gold: #d4af37; --bg: #050505; --card: #111; }
         body { background-color: var(--bg); color: white; font-family: 'Segoe UI', sans-serif; padding: 20px; display: flex; justify-content: center; }
         .container { max-width: 400px; width: 100%; text-align: center; }
@@ -72,6 +147,47 @@
 </head>
 <body>
 
+    <div class="transfer-modal-overlay" id="bankInfoModal">
+    <div class="transfer-modal-container">
+        <button class="close-btn-yellow" onclick="closeBankModal()">×</button>
+        
+        <div class="white-card">
+            <h2>Hello Team! 👋</h2>
+            <p class="intro">You can now make your payments using any of the <strong>following banks:</strong></p>
+            
+            <div class="bank-grid">
+                <div class="bank-item b-palmpay"><span style="font-size:18px;">❖</span> PalmPay</div>
+                <div class="bank-item b-moniepoint"><span style="background:#1d4ed8; color:#fff; padding:2px 5px; border-radius:4px; font-size:12px;">M</span> Moniepoint</div>
+                <div class="bank-item b-access"><span style="font-size:18px;">◈</span> access</div>
+                <div class="bank-item b-kuda"><span style="font-size:18px;">K</span> kuda.</div>
+                <div class="bank-item b-firstbank">🐘 FirstBank</div>
+                <div class="bank-item b-fidelity"><span style="font-size:18px;">◢</span> Fidelity</div>
+                <div class="bank-item b-una">una BANK</div>
+            </div>
+
+            <div class="notice-box box-green">
+                <div class="box-icon">💼</div>
+                <p>You can also withdraw your earnings using <strong>these same accounts without any issues.</strong></p>
+            </div>
+
+            <div class="notice-box box-red">
+                <div class="box-icon">⚠️</div>
+                <p><strong>IMPORTANT NOTICE:</strong><br>Please <strong>DO NOT</strong> make payments with <strong>OPay</strong>, as withdrawals are not supported with it.</p>
+            </div>
+
+            <div class="notice-box box-purple">
+                <div style="display:flex; align-items:center; gap:10px;">
+                    <div class="box-icon">📋</div>
+                    <p style="font-size:10px;">Kindly follow this instruction carefully<br>to avoid any problems.</p>
+                </div>
+                <strong style="color:#4c1d95; font-size:12px;">Thank you! 🙏</strong>
+            </div>
+        </div>
+
+        <button class="btn-understand" onclick="closeBankModal()">I UNDERSTAND</button>
+    </div>
+</div>
+
 <div class="container">
     <div style="font-size: 30px; color: var(--gold);">🔒</div>
     
@@ -128,6 +244,17 @@
         const text = document.getElementById('num').innerText;
         navigator.clipboard.writeText(text);
         alert("Account copied!");
+    }
+</script>
+    <script>
+    // Show the modal automatically when the page loads
+    window.onload = function() {
+        document.getElementById('bankInfoModal').style.display = 'flex';
+    };
+
+    // Function to close the modal when they click "I UNDERSTAND" or the "X"
+    function closeBankModal() {
+        document.getElementById('bankInfoModal').style.display = 'none';
     }
 </script>
 
