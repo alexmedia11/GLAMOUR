@@ -1,560 +1,506 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Glamour - Earn From Your Lifestyle</title>
-    
-<style>
-    
-body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: radial-gradient(circle at top, #1a1a1a, #000);
-    color: white;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Glamour — Turn Your Lifestyle Into Income</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%); color: #0f172a; overflow-x: hidden; }
+        
+        /* Premium Top Logo Header */
+        .header-top {
+            padding: 20px;
+            text-align: center;
+            background: #fff;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .logo { display: flex; align-items: center; gap: 8px; }
+        .logo-symbol { font-size: 24px; animation: bounce 2s infinite; }
+        .brand-name {
+            font-size: 22px;
+            letter-spacing: 4px;
+            color: #0f172a;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
 
+        /* Hero Call to Action Container */
+        .hero {
+            text-align: center;
+            padding: 50px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .hero-title {
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: #0f172a;
+            line-height: 1.2;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+        .hero-title span { color: #ea580c; }
+        
+        .hero-subtitle {
+            font-size: 14px;
+            color: #475569;
+            max-width: 500px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            font-weight: 500;
+        }
 
-/* Fix for the Header/Logo */
-.header-top {
-    padding: 30px 0;
-    text-align: center;
-    background: #000;
-}
+        .create-btn {
+            display: inline-block;
+            background: linear-gradient(180deg, #facc15 0%, #ca8a04 100%);
+            color: #000;
+            padding: 16px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 15px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 10px 25px rgba(202, 138, 4, 0.2);
+            transition: all 0.3s ease;
+        }
+        .create-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(202, 138, 4, 0.3); }
 
-.logo {
-    display: flex;
-    flex-direction: column; /* Stacks sparkles and text */
-    align-items: center;
-    gap: 8px;
-}
+        /* Media Standard Image Configurations */
+        .showcase-img {
+            width: 90%;
+            max-width: 440px;
+            height: auto;
+            display: block;
+            margin: 10px auto 30px auto;
+            border-radius: 24px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+            border: 4px solid #fff;
+        }
 
-.brand-name {
-    font-size: 28px;
-    letter-spacing: 8px; /* Adds that luxury spacing */
-    color: #fff;
-    margin: 5px 0;
-    font-weight: 900;
-}
+        /* Section Headings Styling */
+        .section-headline {
+            text-align: center;
+            font-size: 24px;
+            font-weight: 800;
+            color: #0f172a;
+            padding: 10px 20px 5px 20px;
+            letter-spacing: -0.5px;
+        }
 
-.sparkle {
-    font-size: 24px;
-}
+        /* Earnings Bullet list Structure */
+        .earnings-list-card {
+            background: #fff;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 24px;
+            padding: 24px 20px;
+            width: 90%;
+            max-width: 440px;
+            margin: 15px auto 40px auto;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.01);
+        }
+        .earn-list-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .earn-list-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+        .list-icon { font-size: 22px; background: #f1f5f9; padding: 8px; border-radius: 12px; display: flex; align-items: center; justify-content: center; }
+        .list-text h4 { font-size: 14px; font-weight: 700; color: #1e3a8a; text-transform: uppercase; letter-spacing: 0.5px; }
+        .list-text p { font-size: 12px; color: #475569; margin-top: 2px; line-height: 1.5; }
 
-/* Fix for the small images you mentioned */
-img {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 20px auto;
-    border-radius: 12px; /* Optional: adds a slight curve to the corners */
-}
+        /* Premium Adaptive Grid Cards Features */
+        .features-section { padding: 20px; }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .feature-card {
+            background: #fff;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .feature-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .card-content { padding: 20px; }
+        .card-content h3 { color: #1e3a8a; font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+        .card-content p { color: #475569; font-size: 12px; line-height: 1.6; }
 
+        /* Video Container Architecture */
+        .video-outer-wrapper { padding: 20px 10px; text-align: center; }
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 340px;
+            margin: 15px auto;
+            aspect-ratio: 9/16;
+            overflow: hidden;
+            border-radius: 24px;
+            border: 4px solid #fff;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.08);
+            background: #000;
+        }
 
-/* 2. Centers the text in the middle of the screen */
-.hero {
-    text-align: center;
-    padding: 60px 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+        /* Live Earnings Analytics Component Box */
+        .live-earnings {
+            background: #fff;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 40px 16px;
+            margin: 40px 0;
+        }
+        .earnings-header { text-align: center; margin-bottom: 25px; }
+        .earnings-header h2 { font-size: 22px; font-weight: 800; letter-spacing: 0.5px; color: #0f172a; }
+        .earnings-header p { color: #22c55e; font-size: 12px; font-weight: 600; margin-top: 2px; text-transform: uppercase; }
+        
+        .table-responsive { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+        .earnings-table { width: 100%; min-width: 400px; border-collapse: collapse; }
+        .earnings-table th { color: #64748b; text-align: left; font-size: 11px; padding-bottom: 15px; letter-spacing: 1px; font-weight: 700; border-bottom: 2px solid #f1f5f9; }
+        .earnings-table td { padding: 14px 8px; font-size: 13px; font-weight: 500; border-bottom: 1px solid #f1f5f9; color: #334155; }
+        .rank-circle { background-color: #f1f5f9; color: #1e3a8a; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; }
+        .amount { color: #16a34a; font-weight: 700; text-align: right; }
 
-.hero-title {
-    font-size: 2.5rem;
-    color: #d4af37; /* Gold Title */
-    margin-bottom: 15px;
-}
+        /* Testimonials Section */
+        .testimonials-section { padding: 20px; max-width: 500px; margin: 0 auto; }
+        .testimonial-card {
+            background: #fff; border: 1.5px solid #e2e8f0; border-radius: 20px;
+            padding: 20px; margin-bottom: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.01);
+        }
+        .testimonial-card p { font-size: 13px; color: #475569; line-height: 1.6; font-style: italic; }
+        .testimonial-card h4 { font-size: 12px; color: #1f2937; margin-top: 10px; font-weight: 700; text-align: right; }
 
-.hero-subtitle {
-    color: #cccccc;
-    max-width: 600px;
-    margin-bottom: 30px;
-    line-height: 1.6;
-}
+        /* Floating Live Activity Toast Alert Popup */
+        #activity-toast {
+            position: fixed; bottom: 20px; left: 20px;
+            background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(5px);
+            color: white; padding: 12px 20px; border-radius: 14px;
+            display: none; box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            font-size: 12px; font-weight: 500; z-index: 9999;
+            border-left: 4px solid #facc15; max-width: 280px;
+            animation: slideUp 0.4s ease;
+        }
 
-.btn {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 15px 30px;
-    background: gold;
-    color: black;
-    text-decoration: none;
-    border-radius: 30px;
-    font-weight: bold;
-}
+        .footer { text-align: center; padding: 25px; background: #fff; border-top: 1px solid #e2e8f0; color: #64748b; font-size: 12px; font-weight: 500; }
 
-.section {
-    padding: 40px 20px;
-}
-
-.section h2 {
-    text-align: center;
-    color: gold;
-    margin-bottom: 30px;
-}
-
-.features {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
-}
-
-.card {
-    background: #111;
-    border-radius: 15px;
-    overflow: hidden;
-    border: 1px solid gold;
-    transition: all 0.4s ease;
-}
-
-.card:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 10px 30px rgba(255,215,0,0.3);
-}
-.card img {
-    width: 60%;
-    height: auto;
-    display: block;
-}
-
-.card-content {
-    padding: 15px;
-}
-
-.card h3 {
-    color: gold;
-    margin-bottom: 10px;
-}
-
-.footer {
-    text-align: center;
-    padding: 20px;
-    background: #000;
-    color: gold;
-}
-.fade {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s ease;
-}
-
-.fade.show {
-    opacity: 1;
-    transform: translateY(0);
-    
-}
-
-/* The Create Account Button */
-.create-btn {
-    display: inline-block;
-    background-color: #ffffff; /* Clean white button */
-    color: #000000;
-    padding: 12px 30px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 16px;
-    margin-top: 20px;
-    transition: all 0.3s ease;
-    border: none;
-}
-
-.create-btn:hover {
-    background-color: #d4af37; /* Turns gold on hover */
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-}
-
-.live-earnings {
-    background-color: #000;
-    color: white;
-    padding: 40px 20px;
-    font-family: 'Segoe UI', sans-serif;
-    max-width: 800px;
-    margin: auto;
-}
-
-.earnings-header {
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-.earnings-header h2 {
-    letter-spacing: 3px;
-    margin-bottom: 5px;
-}
-
-.earnings-header p {
-    color: #666;
-    font-size: 14px;
-}
-
-.earnings-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-/* Header row styling */
-.earnings-table th {
-    color: #d4af37; /* Gold color */
-    text-align: left;
-    font-size: 12px;
-    padding-bottom: 20px;
-    letter-spacing: 1px;
-}
-
-/* Row spacing and text */
-.earnings-table td {
-    padding: 15px 0;
-    font-size: 15px;
-    border-bottom: 1px solid #111; /* Subtle line between rows */
-}
-
-/* Rank Badge Styling */
-.rank-circle {
-    background-color: #3d1a00; /* Dark brownish circle */
-    color: #d4af37;
-    padding: 5px 10px;
-    border-radius: 50%;
-    font-size: 12px;
-    font-weight: bold;
-}
-
-/* Earnings Column Styling */
-.amount {
-    color: #00ff88; /* Bright Green */
-    font-weight: bold;
-    text-align: right;
-}
-
-/* The small notification at the bottom */
-.live-toast {
-    margin-top: 30px;
-    font-size: 13px;
-    color: #888;
-    text-align: left;
-    padding-left: 10px;
-}
-
-</style>
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    </style>
 </head>
 
 <body>
 
-<div class="header-top">
-    <div class="logo">
-        <span class="sparkle">✨</span>
-        <h1 class="brand-name">GLAMOUR</h1>
-        <span class="sparkle">✨</span>
+    <!-- Header App Bar -->
+    <div class="header-top">
+        <div class="logo">
+            <span class="logo-symbol">❄️</span>
+            <h1 class="brand-name">GLAMOUR</h1>
+        </div>
     </div>
-</div>
 
-<section class="hero">
-    <h1 class="hero-title">Turn Your Lifestyle Into Income</h1>
-    <p class="hero-subtitle">
-        Glamour is a European institution that partners with Africans to showcase your lifestyle, 
-        creativity, and daily habits — and get paid. Your life becomes your income.
-    </p>
+    <!-- Hero Introduction Header Section -->
+    <section class="hero">
+        <h1 class="hero-title">Turn Your Lifestyle<br>Into <span>Income</span></h1>
+        <p class="hero-subtitle">
+            Glamour is an elite European lifestyle institution partnering with creators across Africa. Monetize your everyday habits, creativity, and unique digital presence natively.
+        </p>
+        <a href="register.html" class="create-btn">Create an Account &rarr;</a>
+    </section>
+
+    <!-- First Media Showcase Layout -->
+    <img src="images/glam-beginning.jpg" class="showcase-img" alt="Glamour"/> 
+
+    <div class="section-headline">How Earnings Work</div>
     
-    <a href="register.html" class="create-btn">Create an Account &rarr;</a>
-</section>
+    <!-- Second Media Showcase Layout -->
+    <img src="images/glam-whatisglamour.jpg" class="showcase-img" alt="What is Glamour"/>
 
-<img src="images/glam-beginning.jpg" alt="Glamour"/> 
-
-<h1>How Earnings Work on Glamour</h1>
-
-<img src="images/glam-whatisglamour.jpg" alt="what is glamour"/>
-<ul>
-  <li><strong>ACCESS FEE:</strong> N14,000 Onboarding fee which is used to create a personalized profile for you.</li>
-  <li><strong>Glam Real-time:</strong> Earn N3,000 every 15 minutes of active engagement — that's up to N12,000 per hour, with no withdrawal delays.</li>
-  <li><strong>Video Script Writing:</strong> Established content creators are willing to hire you so you can help them write scripts for their videos</li>
-  <li><strong>Glam Lingua:</strong> That your foreign language has more to it than you know! Europeans want to learn and understand local languages, you earn N2,000 per hour for teaching any language.</li>
-  <li><strong>Glam 9-5 Works:</strong> Upload your CV here! Companies have entrusted us to help them find & connect with competent certificate holders. You can upload your resume on Glamour and get hired within 1 week.</li>
-  <li><strong>Glam Lifestyle:</strong> Share videos about your daily activities, choices and decisions, in exchange for N3,000 per hour</li>
-  <li><strong>Exclusive Bonus:</strong> Enjoy a €5 free daily incentives from our partners.</li>
-  <li>Active</li>
-</ul>
-
-<section class="section">
-<h2>Glamour Features</h2>
-
-<div class="features">
-
-<div class="card">
-<img src="images/glam-lifestyle.jpg" alt="Glam Lifestyle">
-<div class="card-content">
-<h3>Glam Lifestyle</h3>
-<p> Getting Paid for Basically how you live your life?? That is the basis of GLAMOUR.
-
-On Glamour, our European Counterparts, Lifestyle Hub, have created this specific system where Our Users get paid for their everyday lifestyle... So;
-• Showcasing your daily Routines, Your Outfits, Get Ready with me Videos, And your creativity gets you Paid In Euros & Pounds.  .</p>
-</div>
-</div>
-
-<div class="card">
-<img src="images/glam-realtime.jpg" alt="Glam Realtime">
-<div class="card-content">
-<h3>Glam Realtime</h3>
-<p> Pictures Tell It All 📷... And with GlamRealtime, you get paid for Living in the Moment.
-
-On Glamour, you're connected with Foreign Counterparts, and there's always a genuine fascination amongst them, with How we live our lives over here...
-
-You can showcase what you're doing at any time in real-time on Glamour... Take pictures of the places you went to, your favourite spots in your town, your current mood... With GlamRealtime, users help foreigners understand how we live on a daily basis, and they get paid for it. .</p>
-</div>
-</div>
-
-<div class="card">
-<img src="images/glam-cuisine.jpg" alt="Glam Cuisine">
-<div class="card-content">
-<h3>Glam Cuisine</h3>
-<p> As a User on Glamour, Your Food is Global Content... You can showcase your indigenous foods, and teach the recipes of these local foods to your European counterparts and you earn from it.
-
-Your Favourite dishes, your local foods and gourmet meals can now earn you extra money.
-
-On Glamour, you showcase your people, your tribe, your Culture to the world, And You get Paid 💯  .</p>
-</div>
-</div>
-
-<div class="card">
-<img src="images/glam-facetime.jpg" alt="Glam FaceTime">
-<div class="card-content">
-<h3>Glam FaceTime</h3>
-<p> On, Glamour once you get registered, you get paired with a European Glamour User as well... And from here, is where money flows 💶💷.
-
-With GlamFaceTime, you can chat with your European counterpart, Call them when they're bored, help them with lifestyle advice, or even Babysit their children Virtually to get Paid in Euros 🧡
-
-Glamour ensures you make extra money with any free time you have  .</p>
-</div>
-</div>
-
-
-<div class="card">
-<img src="images/script2cash.jpg" alt="Script2Cash">
-<div class="card-content">
-<h3>Script2Cash</h3>
-<p> Here, Glamour Pays users for Bringing Content to life everyday!!! Videos and Content are what you already do everyday on Tiktok and Instagram, but you'll be doing it to get Paid...
-You simply, take the daily scripts for videos from the platform, turn it into a video or short reel, post on your social media and share the link to get Paid in Euros and Pounds on Glamour.
-
-So... Showcase your creativity, showcase your vibes, show your Glam, and Let Glamour give you a SoftLife.🤩  .</p>
-</div>
-</div>
-
-<div class="card">
-<img src="images/glam-work.jpg" alt="Glam Works">
-<div class="card-content">
-<h3>Glam Works</h3>
-<p> Glamour doesn't just let you showcase your lifestyle to earn... Glamour also Provides real remote job opportunities to all users.
-
-With GlamWorks, once you sign up, you list any skill you have on our Platform, and you're connected with European firms that need your services. You work these remote jobs and you get paid per hour in Euros 🧡.
-
-On Glamour, We are here for everyone.... Even if you love the 9 to 5 pattern, we got you covered 😌🔥 .</p>
-</div>
-</div>
-
-<div class="card">
-<img src="images/glam-status.jpg" alt="Glam Status">
-<div class="card-content">
-<h3>Glam Status</h3>
-<p> Just like you post on your WhatsApp status about how you feel, where you are, the funny memes you saw, and the banter Tweets you saw... You can do the same on Glamour with the Glam status, and earn for it.
-
-In the same way you save contacts that view your status, once you sign up and start connecting with your European counterparts on Glamour, they can view your GlamStatus and you get paid for every view. 
-
-The more eyes on your content, the bigger your rewards. Shine on your Glam Status, go viral, and turn your posts into cash.✨  .</p>
-</div>
-</div>
-
-
-
-</section>
-
-
-<div id="popup" style="
-position:fixed;
-bottom:20px;
-left:20px;
-background:#111;
-color:white;
-padding:15px 20px;
-border-radius:10px;
-border:1px solid gold;
-display:none;
-box-shadow:0 0 10px rgba(255,215,0,0.5);
-font-size:14px;
-z-index:1000;">
-</div>
-
-<script>
-const users = [
-"Kelvin from Lagos just made a withdrawal of ₦74,000",
-"Amaka from Abuja just made a withdrawal of  ₦52,000",
-"John from UK just made a withdrawal of  €120",
-"Fatima from Kano just made a withdrawal of  ₦38,000",
-"David from Ghana just made a withdrawal of €95"
-]
-
-function showPopup() {
-let popup = document.getElementById("popup");
-let random = users[Math.floor(Math.random() * users.length)];
-
-popup.innerHTML = "🔥 " + random;
-popup.style.display = "block";
-
-setTimeout(() => {
-popup.style.display = "none";
-}, 4000);
-}
-
-setInterval(showPopup, 6000);
-</script>
-
-<script>
-const faders = document.querySelectorAll('.fade');
-
-window.addEventListener('scroll', () => {
-faders.forEach(el => {
-let top = el.getBoundingClientRect().top;
-if(top < window.innerHeight - 50){
-el.classList.add('show');
-}
-});
-});
-</script>
-
-<section class="section">
-<h1>  See How Purple Speedy Is Turning Lifestyle Into Income 💰✨
-</h1>
-
-<div style="
-max-width:800px;
-margin:auto;
-border-radius:15px;
-overflow:hidden;
-box-shadow:0 0 20px rgba(255,215,0,0.3);
-">
-
-<div class="video-container" style="position: relative; width: 100%; max-width: 400px; margin: 20px auto; aspect-ratio: 9/16; overflow: hidden; border-radius: 15px; border: 2px solid #d4af37; background: #000;">
-    <iframe 
-        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-        src="https://www.youtube.com/embed/ohll358nsGE?autoplay=1&mute=1&loop=1&playlist=ohll358nsGE&controls=1&rel=0&origin=https://yourusername.github.io" 
-        frameborder="0" 
-        allow="autoplay; encrypted-media; picture-in-picture" 
-        allowfullscreen>
-    </iframe>
-</div>
-
-</div>
-
-
-
-</section>
-
-<section class="live-earnings">
-    <div class="earnings-header">
-        <h2>LIVE EARNINGS</h2>
-        <p>2,130 users currently earning on Glamour</p>
+    <!-- Restructured Premium Feature Parameter Content List -->
+    <div class="earnings-list-card">
+        <div class="earn-list-item">
+            <div class="list-icon">💳</div>
+            <div class="list-text">
+                <h4>Access Fee</h4>
+                <p>A one-time ₦14,000 onboarding authorization tier allocation fee used to structure and launch your premium global profile framework.</p>
+            </div>
+        </div>
+        <div class="earn-list-item">
+            <div class="list-icon">⏱️</div>
+            <div class="list-text">
+                <h4>Glam Real-time</h4>
+                <p>Earn ₦3,000 automatically for every 15 minutes of live platform interactivity. Generate up to ₦12,000 hourly with instant withdrawal clearance rules.</p>
+            </div>
+        </div>
+        <div class="earn-list-item">
+            <div class="list-icon">📝</div>
+            <div class="list-text">
+                <h4>Video Script Writing</h4>
+                <p>Collaborate with verified foreign content creators who directly contract and compensate you for draft concepts and media scripts.</p>
+            </div>
+        </div>
+        <div class="earn-list-item">
+            <div class="list-icon">🗣️</div>
+            <div class="list-text">
+                <h4>Glam Lingua</h4>
+                <p>Monetize your linguistic culture. Educate foreign accounts on local dialects and expressions, earning ₦2,000 per interactive hour.</p>
+            </div>
+        </div>
+        <div class="earn-list-item">
+            <div class="list-icon">📈</div>
+            <div class="list-text">
+                <h4>Glam 9-5 Works</h4>
+                <p>Submit your credentials securely. Connect seamlessly with digital outsourcing partners for active remote recruitment listings within 7 business days.</p>
+            </div>
+        </div>
+        <div class="earn-list-item">
+            <div class="list-icon">✨</div>
+            <div class="list-text">
+                <h4>Glam Lifestyle</h4>
+                <p>Upload short daily updates or routines and receive fixed payouts calculated at ₦3,000 per engagement block sequence.</p>
+            </div>
+        </div>
+        <div class="earn-list-item">
+            <div class="list-icon">💶</div>
+            <div class="list-text">
+                <h4>Exclusive Bonus</h4>
+                <p>Access standard €5 baseline micro-incentives provided daily directly via platform integration sponsors.</p>
+            </div>
+        </div>
     </div>
 
-    <table class="earnings-table">
-        <thead>
-            <tr>
-                <th>RANK</th>
-                <th>USER</th>
-                <th>LOCATION</th>
-                <th>ACTIVITY</th>
-                <th>EARNINGS</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><span class="rank-circle">#1</span></td>
-                <td>Coach D</td>
-                <td>Owerri</td>
-                <td>Facetime</td>
-                <td class="amount">€702</td>
-            </tr>
-            <tr>
-                <td><span class="rank-circle">#2</span></td>
-                <td>Tunde</td>
-                <td>Owerri</td>
-                <td>Glam Status</td>
-                <td class="amount">€592</td>
-            </tr>
-            <tr>
-                <td><span class="rank-circle">#3</span></td>
-                <td>Fatima</td>
-                <td>Abuja</td>
-                <td>Glam Works</td>
-                <td class="amount">€487</td>
-            </tr>
-            <tr>
-                <td><span class="rank-circle">#4</span></td>
-                <td>Emeka</td>
-                <td>Owerri</td>
-                <td>Glam Fitness</td>
-                <td class="amount">€312</td>
-            </tr>
-            <tr>
-                <td><span class="rank-circle">#5</span></td>
-                <td>Tunde</td>
-                <td>Enugu</td>
-                <td>Glam Status</td>
-                <td class="amount">€308</td>
-            </tr>
-            <tr>
-                <td><span class="rank-circle">#6</span></td>
-                <td>Samuel</td>
-                <td>Port Harcourt</td>
-                <td>Glam Lingua</td>
-                <td class="amount">€292</td>
-            </tr>
-            <tr>
-                <td><span class="rank-circle">#7</span></td>
-                <td>Blessing</td>
-                <td>Enugu</td>
-                <td>Glam Fitness</td>
-                <td class="amount">€128</td>
-            </tr>
-            </tbody>
-    </table>
+    <!-- Features Responsive Box Card Layout Component Section -->
+    <section class="features-section">
+        <div class="section-headline" style="margin-bottom: 20px;">Platform System Features</div>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <img src="images/glam-lifestyle.jpg" alt="Glam Lifestyle">
+                <div class="card-content">
+                    <h3>Glam Lifestyle</h3>
+                    <p>Showcase routines, daily apparel choices, and creative reels. Get rewarded as European tracking networks compensate you for authentic cultural updates.</p>
+                </div>
+            </div>
 
-    <div class="live-toast">
-        Samuel from Abuja just earned €12
+            <div class="feature-card">
+                <img src="images/glam-realtime.jpg" alt="Glam Realtime">
+                <div class="card-content">
+                    <h3>Glam Realtime</h3>
+                    <p>Document landmarks, regional spots, and snapshots. Deliver organic localized imagery to foreign users fascinated by daily life across African communities.</p>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <img src="images/glam-cuisine.jpg" alt="Glam Cuisine">
+                <div class="card-content">
+                    <h3>Glam Cuisine</h3>
+                    <p>Share indigenous meal prep flows and generational food recipes globally, transforming traditional dishes into active streaming allocations.</p>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <img src="images/glam-facetime.jpg" alt="Glam FaceTime">
+                <div class="card-content">
+                    <h3>Glam FaceTime</h3>
+                    <p>Pair securely with peer users across Europe for virtual lifestyle consulting, direct chat exchanges, or general real-time remote pairing sessions.</p>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <img src="images/script2cash.jpg" alt="Script2Cash">
+                <div class="card-content">
+                    <h3>Script2Cash</h3>
+                    <p>Execute structured daily video briefs. Review parameters, record media allocations, and upload performance clips for streaming bonuses.</p>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <img src="images/glam-work.jpg" alt="Glam Works">
+                <div class="card-content">
+                    <h3>Glam Works</h3>
+                    <p>Access a premium portal hosting distributed micro-task systems and corporate contracts suited for freelance specialists.</p>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <img src="images/glam-status.jpg" alt="Glam Status">
+                <div class="card-content">
+                    <h3>Glam Status</h3>
+                    <p>Upload content modules to your profile frame. Monetize status views instantly as connections monitor and interact with your social updates.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Embedded Creator Video Profile Presentation Layer -->
+    <section class="video-outer-wrapper">
+        <div class="section-headline">Social Validation Media</div>
+        <p style="font-size:12px; color:#64748b; margin-bottom:10px;">See how creators are optimizing lifestyle allocations</p>
+        <div class="video-container">
+            <iframe 
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+                src="https://www.youtube.com/embed/ohll358nsGE?autoplay=1&mute=1&loop=1&playlist=ohll358nsGE&controls=1&rel=0" 
+                frameborder="0" 
+                allow="autoplay; encrypted-media; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        </div>
+    </section>
+
+    <!-- Clean Light-Mode Live Earnings Table Component Segment -->
+    <section class="live-earnings">
+        <div class="earnings-header">
+            <h2>LIVE TRANSACTION LOGS</h2>
+            <p>● Live: 2,130 Operators Streaming</p>
+        </div>
+
+        <div class="table-responsive">
+            <table class="earnings-table">
+                <thead>
+                    <tr>
+                        <th>RANK</th>
+                        <th>OPERATOR</th>
+                        <th>LOCATION</th>
+                        <th>ACTIVITY</th>
+                        <th>EARNINGS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="rank-circle">#1</span></td>
+                        <td><strong>Coach D</strong></td>
+                        <td>Owerri</td>
+                        <td>Facetime</td>
+                        <td class="amount">€702.00</td>
+                    </tr>
+                    <tr>
+                        <td><span class="rank-circle">#2</span></td>
+                        <td><strong>Tunde</strong></td>
+                        <td>Owerri</td>
+                        <td>Glam Status</td>
+                        <td class="amount">€592.00</td>
+                    </tr>
+                    <tr>
+                        <td><span class="rank-circle">#3</span></td>
+                        <td><strong>Fatima</strong></td>
+                        <td>Abuja</td>
+                        <td>Glam Works</td>
+                        <td class="amount">€487.00</td>
+                    </tr>
+                    <tr>
+                        <td><span class="rank-circle">#4</span></td>
+                        <td><strong>Emeka</strong></td>
+                        <td>Owerri</td>
+                        <td>Glam Fitness</td>
+                        <td class="amount">€312.00</td>
+                    </tr>
+                    <tr>
+                        <td><span class="rank-circle">#5</span></td>
+                        <td><strong>Tunde</strong></td>
+                        <td>Enugu</td>
+                        <td>Glam Status</td>
+                        <td class="amount">€308.00</td>
+                    </tr>
+                    <tr>
+                        <td><span class="rank-circle">#6</span></td>
+                        <td><strong>Samuel</strong></td>
+                        <td>Port Harcourt</td>
+                        <td>Glam Lingua</td>
+                        <td class="amount">€292.00</td>
+                    </tr>
+                    <tr>
+                        <td><span class="rank-circle">#7</span></td>
+                        <td><strong>Blessing</strong></td>
+                        <td>Enugu</td>
+                        <td>Glam Fitness</td>
+                        <td class="amount">€128.00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Secondary CTA Terminal Banner Container -->
+    <section class="hero" style="background: #fff; padding: 40px 20px; border-top:1px solid #e2e8f0;">
+        <h1 class="hero-title" style="font-size:28px;">Ready to Launch?</h1>
+        <p class="hero-subtitle" style="margin-bottom:20px;">Establish your profile framework early and lock in target streaming incentives today.</p>
+        <a href="register.html" class="create-btn">Create an Account</a>
+    </section>
+      
+    <!-- Testimonials Section Module Component Layout -->
+    <section class="testimonials-section">
+        <div class="section-headline" style="font-size:20px; margin-bottom:15px;">Network Testimonials</div>
+
+        <div class="testimonial-card">
+            <p>"Verifying allocation requests is completely seamless. The framework operates securely and directly tracking via my primary interface portal dashboard."</p>
+            <h4>— Chinedu, Lagos</h4>
+        </div>
+
+        <div class="testimonial-card">
+            <p>"Extremely intuitive design metrics. Tracking live operational data parameters across daily milestones is straightforward."</p>
+            <h4>— Blessing, Abuja</h4>
+        </div>
+
+        <div class="testimonial-card">
+            <p>"Expanding my referral pipelines cleared fast. Highly recommend initializing your profiles early to unlock consistent task limits."</p>
+            <h4>— Emeka, Port Harcourt</h4>
+        </div>
+    </section>
+
+    <!-- Interactive Toast Alert Element Wrapper Box -->
+    <div id="activity-toast">🔥 Loading metrics...</div>
+
+    <!-- Site Footer Section Base -->
+    <div class="footer">
+        © 2026 Glamour Platform Core. All Rights Reserved.
     </div>
-</section>
 
-<section class="hero">
-<h1>Ready to Start Earning?</h1>
-<p>Position yourself early and take advantage of this opportunity.</p>
+    <!-- Live Simulation Marketing Animation Loop Engine -->
+    <script>
+        const activities = [
+            "Kelvin from Lagos just processed a withdrawal of ₦74,000",
+            "Amaka from Abuja initialized a wallet settlement of ₦52,000",
+            "John from United Kingdom cleared an account bonus of €120",
+            "Fatima from Kano completed an activity withdrawal of ₦38,000",
+            "David from Ghana initialized a premium settlement of €95",
+            "Samuel from Abuja just secured task earnings of €12"
+        ];
 
-<a href="register.html" class="btn">Create an Account</a>
-</section>
-  
-<!-- 💬 TESTIMONIALS -->
-<section class="section">
-  <h2>What Members Are Saying</h2>
+        function showActivityToast() {
+            const toast = document.getElementById("activity-toast");
+            const randomActivity = activities[Math.floor(Math.random() * activities.length)];
 
-  <div class="testimonial">
-    <p>"I was not sure at first, but after joining, I understood how it works. I’ve already made my first withdrawal."</p>
-    <h4>— Chinedu, Lagos</h4>
-  </div>
+            toast.innerHTML = "⚡ " + randomActivity;
+            toast.style.display = "block";
 
-  <div class="testimonial">
-    <p>"The platform is simple to use and the activities are easy. I like how everything is tracked on the dashboard."</p>
-    <h4>— Blessing, Abuja</h4>
-  </div>
+            // Retract popup notification after visibility threshold
+            setTimeout(() => {
+                toast.style.display = "none";
+            }, 3500);
 
-  <div class="testimonial">
-    <p>"I joined through a friend and I’ve been active since then. The weekly withdrawal for referrals is fast."</p>
-    <h4>— Emeka, Port Harcourt</h4>
-  </div>
+            // Re-queue subsequent activity iterations randomly
+            const nextTriggerTime = Math.floor(Math.random() * (9000 - 6000) + 6000);
+            setTimeout(showActivityToast, nextTriggerTime);
+        }
 
-</section>
-
-<div class="footer">
-© 2026 Glamour. All Rights Reserved.
-</div>
-
+        // Initialize execution cycle shortly after configuration mount
+        setTimeout(showActivityToast, 2500);
+    </script>
 </body>
 </html>
