@@ -3,22 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Glamour | Dashboard</title>
+    <title>Glamour | Premium Hub</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
         body { background-color: #f8fafc; color: #0f172a; padding: 20px; padding-bottom: 90px; }
         
-        /* Top Navigation Bar */
-        .app-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
-        .user-profile { display: flex; align-items: center; gap: 12px; }
-        .user-avatar { 
-            width: 48px; height: 48px; background-color: #1d4ed8; 
-            border-radius: 50%; display: flex; align-items: center; justify-content: center; 
-            font-weight: 700; color: #fff; font-size: 18px; 
-        }
-        .user-meta h3 { font-size: 16px; font-weight: 700; color: #0f172a; }
-        .user-meta p { font-size: 13px; color: #64748b; font-weight: 500; }
+        /* Top Navigation Bar (Clean & Professional) */
+        .app-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .brand-logo-area { display: flex; align-items: center; gap: 10px; }
+        .logo-symbol { font-size: 24px; }
+        .brand-logo-area h3 { font-size: 20px; font-weight: 800; color: #0f172a; letter-spacing: 0.5px; text-transform: uppercase; }
         
         .bar-actions { display: flex; gap: 12px; }
         .circle-btn { 
@@ -42,7 +37,7 @@
 
         /* Side-Scrolling Horizon Grid Cards */
         .scrolling-cards-wrapper { 
-            display: flex; gap: 15px; overflow-x: auto; margin-bottom: 25px;
+            display: flex; gap: 15px; overflow-x: auto; margin-bottom: 30px;
             padding-bottom: 5px; scroll-snap-type: x mandatory;
         }
         .scrolling-cards-wrapper::-webkit-scrollbar { display: none; }
@@ -53,25 +48,25 @@
             display: flex; flex-direction: column; justify-content: center;
             box-shadow: 0 4px 12px rgba(0,0,0,0.03);
         }
-        /* Card 1: Gold Dust Texture look from your image */
         .card-gold-dust {
             background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)), url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop');
             background-size: cover; background-position: center; color: #fff;
         }
-        /* Card 2: Deep Blue/Black Card style */
         .card-dark-gains { background: #0b0f19; color: #fff; }
         
         .glam-card p { font-size: 11px; opacity: 0.8; font-weight: 500; letter-spacing: 0.3px; }
         .glam-card h4 { font-size: 26px; font-weight: 700; margin-top: 4px; }
 
-        /* Action Buttons Box Grid */
-        .functional-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 25px; }
+        /* Action Buttons Box Grid (Expanded to 5 columns or wrap cleanly) */
+        .functional-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 30px; }
         .grid-btn-item { text-align: center; cursor: pointer; }
         .grid-btn-square {
             width: 62px; height: 62px; background: #f1f5f9; border: none;
             border-radius: 20px; display: flex; align-items: center; justify-content: center;
-            font-size: 22px; margin: 0 auto 6px auto; color: #1e3a8a;
+            font-size: 22px; margin: 0 auto 6px auto; color: #1e3a8a; transition: all 0.2s ease;
         }
+        /* Make the Register Option highly premium with an accent tint */
+        .register-accent { background: #eff6ff; color: #2563eb; border: 1px dashed #bfdbfe; }
         .grid-btn-item p { font-size: 11px; color: #64748b; font-weight: 600; }
 
         /* Level Up Status Row Panel */
@@ -97,11 +92,11 @@
             padding-bottom: env(safe-area-inset-bottom);
         }
         .dock-tab { text-align: center; color: #94a3b8; cursor: pointer; flex: 1; padding: 12px 0; }
-        .dock-tab.active { color: #ea580c; } /* Highlighted orange like image */
+        .dock-tab.active { color: #ea580c; }
         .dock-icon { font-size: 20px; display: block; margin-bottom: 3px; }
         .dock-tab p { font-size: 11px; font-weight: 600; }
 
-        /* --- OVERLAY LOCK POPUP MODAL --- */
+        /* --- OVERLAY LOCK POPUP MODAL (IMG-20260512-WA0010.jpg Look) --- */
         .modal-view-backdrop {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(4px);
@@ -130,13 +125,11 @@
 </head>
 <body>
 
+    <!-- App Header Bar (No greeting text, 100% clean) -->
     <div class="app-bar">
-        <div class="user-profile">
-            <div class="user-avatar" id="avatar-initial">C</div>
-            <div class="user-meta">
-                <h3 id="profile-name">Hi, Chidimma</h3>
-                <p>Glamour</p>
-            </div>
+        <div class="brand-logo-area">
+            <span class="logo-symbol">❄️</span>
+            <h3>Glamour</h3>
         </div>
         <div class="bar-actions">
             <button class="circle-btn">☀️</button>
@@ -144,13 +137,16 @@
         </div>
     </div>
 
+    <!-- Main Total Balance Row -->
     <div class="balance-summary">
         <p>Total Balance</p>
         <div class="balance-main-val">₦17,000.00</div>
     </div>
     
+    <!-- Hide Balance Pill -->
     <button class="hide-pill">Hide Balance ×</button>
 
+    <!-- Side Scrolling Horizon Cards Grid -->
     <div class="scrolling-cards-wrapper">
         <div class="glam-card card-gold-dust">
             <p>Glam Associate Bonus</p>
@@ -162,7 +158,13 @@
         </div>
     </div>
 
+    <!-- Square Action Grid Buttons -->
     <div class="functional-grid">
+        <!-- New Premium Register Option sitting inside the dashboard -->
+        <div class="grid-btn-item" onclick="location.href='register.html'">
+            <div class="grid-btn-square register-accent">👤+</div>
+            <p>Register</p>
+        </div>
         <div class="grid-btn-item" onclick="showLockModal()">
             <div class="grid-btn-square">↙</div>
             <p>Receive</p>
@@ -175,12 +177,9 @@
             <div class="grid-btn-square">🧳</div>
             <p>Glam Works</p>
         </div>
-        <div class="grid-btn-item" onclick="showLockModal()">
-            <div class="grid-btn-square">🌗</div>
-            <p>Darkmode</p>
-        </div>
     </div>
 
+    <!-- Level Status Tracking Panel Card -->
     <div class="status-panel-card">
         <span class="panel-close">×</span>
         <div class="panel-tag">Level Up</div>
@@ -192,6 +191,7 @@
         <span class="panel-action-lbl" onclick="showLockModal()">View Glam Level</span>
     </div>
 
+    <!-- Bottom Dock Floating Fixed Menu Navigation -->
     <div class="bottom-navigation-dock">
         <div class="dock-tab active">
             <span class="dock-icon">🏠</span>
@@ -215,6 +215,7 @@
         </div>
     </div>
 
+    <!-- === DARK OVERLAY SYSTEM POPUP MODAL === -->
     <div class="modal-view-backdrop" id="popupLockSys">
         <div class="modal-box-ui">
             <div class="modal-lock-shield">🔒</div>
@@ -225,15 +226,6 @@
     </div>
 
     <script>
-        // System hooks to automatically match stored names
-        window.onload = function() {
-            const savedUser = localStorage.getItem('glamourUser') || 'Chidimma';
-            const cleanUser = savedUser.replace('@', '');
-            
-            document.getElementById('profile-name').innerText = `Hi, ${cleanUser}`;
-            document.getElementById('avatar-initial').innerText = cleanUser.charAt(0).toUpperCase();
-        };
-
         // Modal triggers
         function showLockModal() {
             document.getElementById('popupLockSys').classList.add('active');
